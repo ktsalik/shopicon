@@ -1,0 +1,27 @@
+.CategoryPage {
+  width: 1180px;
+  max-width: 100%;
+  margin: 50px auto;
+}
+.CategoryPage .breadcrumbs {
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+.CategoryPage .breadcrumbs a {
+  text-decoration: none;
+  color: #666666;
+}
+.CategoryPage .breadcrumbs > * {
+  margin: 0 3px;
+  color: #666666;
+}
+.CategoryPage .category-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.CategoryPage .category-list .CategoryItem {
+  margin: 30px 0;
+}/*# sourceMappingURL=CategoriesPage.css.map */

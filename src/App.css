@@ -1,0 +1,94 @@
+@font-face {
+  font-family: 'Open Sans';
+  src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Open Sans Bold';
+  src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-SemiBold.ttf);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+body, button, input {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Open Sans Bold', sans-serif;
+}
+
+.hidden {
+  visibility: hidden !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.flex-direction-row {
+  flex-direction: row !important;
+}
+
+.flex-direction-column {
+  flex-direction: column !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.mt-1 {
+  margin-top: 10px !important;
+}
+
+.mt-3 {
+  margin-top: 30px !important;
+}
+
+.mt-5 {
+  margin-top: 50px !important;
+}
+
+.text-dark {
+  color: #444444 !important;
+}
+
+.text-light {
+  color: #EEEEEE !important;
+}
+
+.text-bold {
+  font-weight: bold !important;
+}
+
+.text-primary {
+  color: #5f71e6 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.badge-primary {
+  padding: 3px 10px !important;
+  border-radius: 27px !important;
+  background-color: #5f71e6 !important;
+  font-size: 14px !important;
+  color: #FFFFFF !important;
+}
+
+.link {
+  text-decoration: none;
+}

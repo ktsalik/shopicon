@@ -1,0 +1,65 @@
+.Footer {
+  background-color: #111111;
+}
+.Footer .content {
+  width: 1230px;
+  max-width: 100%;
+  display: flex;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+.Footer .content .logo {
+  flex: 1;
+}
+.Footer .content .logo a {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: Comfortaa;
+  color: #EEEEEE;
+}
+.Footer .content .links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.Footer .content .links h3 {
+  font-size: 16px;
+}
+.Footer .content .links a {
+  text-decoration: none;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #EEEEEE;
+}
+.Footer .content .category-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.Footer .content .category-links h3 {
+  font-size: 16px;
+}
+.Footer .content .category-links a {
+  text-decoration: none;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #EEEEEE;
+}
+.Footer .content .contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.Footer .content .contact-info h3 {
+  font-size: 16px;
+}
+.Footer .content .contact-info span {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #EEEEEE;
+}
+.Footer .copyright {
+  padding: 15px 0;
+  text-align: center;
+  font-size: 12px;
+}/*# sourceMappingURL=Footer.css.map */

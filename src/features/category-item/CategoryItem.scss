@@ -1,0 +1,107 @@
+.CategoryItem {
+  border: 1px solid #CCC;
+  border-radius: 5px;
+
+  .skeleton-item {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    
+    .skeleton-item__images {
+      width: 80%;
+      height: 200px;
+      border-radius: 5px;
+      background-color: #CCCCCC;
+    }
+
+    .skeleton-item__name {
+      width: 80%;
+      height: 35px;
+      border-radius: 5px;
+      background-color: #CCCCCC;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #666666;
+  }
+
+  .images {
+    height: 100%;
+    display: flex;
+
+    .big-image {
+      display: flex;
+      align-items: center;
+      border-right: 1px solid #CCC;
+
+      .no-image-element {
+        width: 210px;
+        height: 210px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .fill {
+          width: calc(210px - 10%);
+          height: calc(210px - 10%);
+          border-radius: 10px;
+          background-color: #CCCCCC;
+        }
+      }
+
+      img {
+        border-radius: 4px;
+      }
+    }
+
+    .small-images {
+      display: flex;
+      flex-direction: column;
+
+      & > div:nth-of-type(1) {
+        border-bottom: 1px solid #CCC;
+      }
+
+      & > div {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .no-image-element {
+          width: 125px;
+          height: 125px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          
+          .fill {
+            width: calc(125px - 10%);
+            height: calc(125px - 10%);
+            border-radius: 10px;
+            background-color: #CCCCCC;
+          }
+        }
+
+        img {
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  .name {
+    padding: 20px 0;
+    border-top: 1px solid #CCC;
+    text-align: center;
+  }
+}
