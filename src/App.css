@@ -13,6 +13,10 @@
   flex-direction: column;
 }
 
+.App.navbar-fixed {
+  padding-top: 75px;
+}
+
 body, button, input {
   font-family: 'Open Sans', sans-serif;
 }
@@ -41,6 +45,10 @@ h1, h2, h3, h4, h5 {
   flex-direction: column !important;
 }
 
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
 .align-items-center {
   align-items: center !important;
 }
@@ -51,6 +59,10 @@ h1, h2, h3, h4, h5 {
 
 .mt-1 {
   margin-top: 10px !important;
+}
+
+.mt-2 {
+  margin-top: 20px !important;
 }
 
 .mt-3 {

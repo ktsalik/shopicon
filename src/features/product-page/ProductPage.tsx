@@ -35,10 +35,10 @@ const ProductPage = () => {
   /**
    * remove this when you setup the server
    */
-  const products = useAppSelector((state: any) => state.products.productListItems);
+  const demoProducts = useAppSelector((state: any) => state.products.productListItems);
   useEffect(() => {
-    setProduct(products.find((p: any) => p.id.toString() === params.id));
-  }, [products, params.id]);
+    setProduct(demoProducts.find((p: any) => p.id.toString() === params.id));
+  }, [demoProducts, params.id]);
   // end of remove this
 
   useEffect(() => {
@@ -123,9 +123,13 @@ const ProductPage = () => {
               </div>
               <div className="info">
                 <span className="title">{product.title}</span>
-                <span className="price">{parseFloat(product.price.toString()).toFixed(2)}€</span>
+                <span className="price">${parseFloat(product.price.toString()).toFixed(2)}</span>
                 <span className="short-description">{product.short_description}</span>
-                <div className="d-flex flex-direction-column mt-3">
+                <div className="available">
+                  <span className="text-dark">Available:</span>
+                  <span className="text-primary">{product.available}</span>
+                </div>
+                <div className="d-flex flex-direction-column mt-2">
                   <input
                     type="number"
                     className="input-quantity"

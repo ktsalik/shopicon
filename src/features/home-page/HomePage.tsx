@@ -72,6 +72,7 @@ const HomePage = () => {
       /**
        * remove this when you setup the server
        */
+      setTimeout(() => {
       setFeaturedProducts([
         {
           id: 2,
@@ -95,6 +96,7 @@ const HomePage = () => {
           price: 21.00,
         },
       ]);
+    }, 5000)
       // end of remove this
     });
 
@@ -177,7 +179,7 @@ const HomePage = () => {
           <CategoryItem id="3"></CategoryItem>
         </div>
 
-        <Link to="/categories" className="categories__btn-see-all">See all</Link>
+        <Link to="/categories" className="categories__btn-all">ALL CATEGORIES</Link>
       </section>
 
       <section>
@@ -205,7 +207,7 @@ const HomePage = () => {
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
                     <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">{parseFloat(product.price.toString()).toFixed(2)}€</span>
+                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
                   </Link>
                 );
               })
@@ -223,7 +225,7 @@ const HomePage = () => {
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
                     <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">{parseFloat(product.price.toString()).toFixed(2)}€</span>
+                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
                   </Link>
                 );
               })
@@ -241,7 +243,7 @@ const HomePage = () => {
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
                     <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">{parseFloat(product.price.toString()).toFixed(2)}€</span>
+                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
                   </Link>
                 );
               })

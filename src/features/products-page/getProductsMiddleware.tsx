@@ -24,6 +24,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               price: 16.50,
               details: [
                 {
+                  available: 'Instock',
                   name: 'Color',
                   value: 'Red',
                 },
@@ -42,6 +43,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
       /**
        * remove this when you setup the server
        */
+      setTimeout(() => {
       store.dispatch({
         type: 'products/productsLoaded',
         payload: {
@@ -64,6 +66,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 16.50,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -101,6 +104,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 20.00,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -138,6 +142,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 27.50,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -175,6 +180,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 18.50,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -212,6 +218,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 21.00,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -249,6 +256,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 30.00,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -286,6 +294,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 14.50,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -323,6 +332,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 18.50,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -360,6 +370,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
               short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
               description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
               price: 20.00,
+              available: 'Instock',
               details: [
                 {
                   name: 'Color',
@@ -383,6 +394,7 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
           page_count: 20,
         },
       });
+    }, 5000)
       // end of remove this
     });
   }

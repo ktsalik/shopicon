@@ -62,6 +62,11 @@
   flex-direction: column;
   margin: 20px;
 }
+.Product.grid:hover {
+  padding: 1px;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
 .Product.grid .thumbnail {
   width: calc(100% - 10px - 10px);
 }

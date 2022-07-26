@@ -48,20 +48,20 @@ const HomeSlider = () => {
        */
       setSliderData([
         {
-          image: 'headphones-1.jpeg',
-          header: 'Offer Discount',
-          subheader: 'Red Headphones',
-          price: 24.00,
-          buttonText: 'Buy now',
-          buttonUrl: '/product/1',
-        },
-        {
           image: 'headphones-2.jpeg',
           header: 'Best Selling',
           subheader: 'Black Cat Headphones',
           price: 17.50,
           buttonText: 'Buy now',
           buttonUrl: '/product/2',
+        },
+        {
+          image: 'headphones-1.jpeg',
+          header: 'Offer Discount',
+          subheader: 'Red Headphones',
+          price: 24.00,
+          buttonText: 'Buy now',
+          buttonUrl: '/product/1',
         },
         {
           image: 'headphones-3.jpeg',
@@ -77,7 +77,6 @@ const HomeSlider = () => {
       setTimeout(() => {
         new Splide('.splide', {
           pagination: false,
-          type: 'loop',
         }).mount();
       });
     });
@@ -102,7 +101,7 @@ const HomeSlider = () => {
                         <div className="info">
                           <div className="header text-dark">{slideData.header}</div>
                           <div className="subheader text-dark">{slideData.subheader}</div>
-                          <div className="price text-dark text-bold">{parseFloat(slideData.price.toString()).toFixed(2).replace('.', ',')}€</div>
+                          <div className="price text-dark text-bold">${parseFloat(slideData.price.toString()).toFixed(2)}</div>
                           <Link to={slideData.buttonUrl} className="btn-offer">{slideData.buttonText}</Link>
                         </div>
                       </div>

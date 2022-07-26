@@ -21,7 +21,7 @@ const Footer = () => {
         </div>
 
         <div className="links">
-          <h3 className="text-light">Useful Links</h3>
+          <h3 className="text-light">USEFUL LINKS</h3>
           <Link to="/">Home</Link>
           <Link to="/categories">Categories</Link>
           <Link to="/blog">Blog</Link>
@@ -30,18 +30,23 @@ const Footer = () => {
         </div>
 
         <div className="category-links">
-          <h3 className="text-light">Shop Categories</h3>
+          <h3 className="text-light">SHOP CATEGORIES</h3>
           {
             categories.filter((category: ProductCategory) => category.parent == 0).map((category: ProductCategory, i: number) => {
+              let clickUrl = `/products/${category.id}`;
+              if (categories.filter((c: any) => c.parent === category.id).length > 0) {
+                clickUrl = `/categories/${category.id}`;
+              }
+              
               return (
-                <Link key={i} to={`products/${category.id}`}>{category.name}</Link>
+                <Link key={i} to={clickUrl}>{category.name}</Link>
               );
             })
           }
         </div>
 
         <div className="contact-info">
-          <h3 className="text-light">Contact</h3>
+          <h3 className="text-light">CONTACT</h3>
           <span>Phone: +30 210 1234 567</span>
           <span>Email: info@shopicon.com</span>
           <span>Monday - Friday: 10:00-17:00</span>

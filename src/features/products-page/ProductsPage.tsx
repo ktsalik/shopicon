@@ -32,6 +32,7 @@ const Products = () => {
   };
 
   let products = useAppSelector((state) => state.products.productListItems);
+  const loading = useAppSelector((state) => state.products.loadingProducts);
 
   /**
    * remove this when you setup the server
@@ -91,9 +92,17 @@ const Products = () => {
 
       <div className="list">
         {
-          products.length === 0
+          products.length === 0 && !loading
             ? <div className="text-dark">No products on this category yet. Try our search or <Link to="/categories" className="link text-primary">browse product categories</Link></div>
             : ''
+        }
+
+        {
+          loading && Array.from(Array(3)).map((n: number, i: number) => {
+            return (
+              <div>Skeleton item {i + 1}</div>
+            );
+          })
         }
 
         {
@@ -109,7 +118,7 @@ const Products = () => {
         }
       </div>
 
-      <Pagination page={page} pageCount={pageCount} onPageChange={changePage} />
+      {pageCount > 0 && !loading && <Pagination page={page} pageCount={pageCount} onPageChange={changePage} />}
     </div>
   )
 };

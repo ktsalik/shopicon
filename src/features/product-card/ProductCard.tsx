@@ -19,7 +19,7 @@ const ProductCard = (props: ProductComponentInterface) => {
           <span className="name">{props.data.title}</span>
         </Link>
         <span className="description">{props.data.short_description}</span>
-        <span className="price">{parseFloat(props.data.price.toString()).toFixed(2)}€</span>
+        <span className="price">${parseFloat(props.data.price.toString()).toFixed(2)}</span>
         <button className="btn-add">Add to cart</button>
       </div>
     </div>

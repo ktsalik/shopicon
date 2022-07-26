@@ -7,6 +7,14 @@
   background: #FFFFFF;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+  &.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
   .content {
     position: relative;
     width: 1180px;
@@ -118,29 +126,34 @@
     .right-menu {
       position: absolute;
       right: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
       display: flex;
+      align-items: center;
 
-      .btn-search {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-      }
-
-      .btn-favourites {
-        height: 75px;
-        display: flex;
-        align-items: center;
+      [class^=btn-] {
         margin-left: 25px;
         cursor: pointer;
       }
 
       .btn-cart {
-        height: 75px;
-        display: flex;
-        align-items: center;
-        margin-left: 25px;
-        cursor: pointer;
+        position: relative;
+
+        .products-count-badge {
+          position: absolute;
+          top: -15px;
+          right: -15px;
+          width: 23px;
+          height: 23px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          background-color: #5f71e6;
+          font-size: 12px;
+          font-family: 'Open Sans Bold';
+          color: #FFFFFF;
+        }
       }
     }
   }

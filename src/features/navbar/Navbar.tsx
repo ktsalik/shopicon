@@ -4,13 +4,21 @@ import {
   Link,
 } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBasket, faCaretRight, faShop, faHeart, faSearch, faClose } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBasket, faCaretRight, faShop, faHeart, faSearch, faClose, faUser, faCircleDot, faCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { ProductCategory } from '../../interfaces/ProductsInterfaces';
 import { useAppSelector } from '../../app/hooks';
 import SearchModal from '../search-modal/SearchModal';
+import Cart from '../cart/Cart';
 
-const Navbar = () => {
+interface NavbarComponentProps {
+  onTypeChange: any;
+};
+
+const Navbar = (props: NavbarComponentProps) => {
   const [showSearchModal, setShowSearchModal] = useState<Boolean>(false);
+  const [openCart, setOpenCart] = useState<Boolean>(false);
+
+  const type = useAppSelector((state) => state.navbar.type);
 
   const cartElRef = React.useRef<HTMLDivElement>(null);
   const navbarElRef = React.useRef<HTMLDivElement>(null);
@@ -31,18 +39,22 @@ const Navbar = () => {
     }
   };
 
-  const openModal = () => {
+  const openSearchModal = () => {
     setShowSearchModal(true);
   };
 
-  const closeModal = () => {
+  const closeSearchModal = () => {
     setShowSearchModal(false);
+  };
+
+  const closeCart = () => {
+    setOpenCart(false);
   };
 
   const categories = useAppSelector((state) => state.products.categories);
 
   return (
-    <div className="Navbar" ref={navbarElRef}>
+    <div className={`Navbar ${type}`} ref={navbarElRef}>
       <div className="content">
         <div className="logo">
           <Link to="/">
@@ -58,7 +70,7 @@ const Navbar = () => {
           <Link to="/" className="text-dark">Home</Link>
           
           <div className="dropdown">
-            <Link to="/categories" className="text-dark">Categories</Link>
+            <Link to="/categories" className="text-dark">Products</Link>
             
             <div className="dropdown__menu">
               {
@@ -105,21 +117,38 @@ const Navbar = () => {
         </div>
         
         <div className="right-menu">
-          <div className="btn-search" onClick={openModal}>
+          <div className="btn-search" onClick={openSearchModal}>
             <FontAwesomeIcon icon={faSearch} size="lg" className="text-dark" />
           </div>
-
-          <SearchModal open={showSearchModal} onClose={closeModal} />
 
           <div className="btn-favourites">
             <FontAwesomeIcon icon={faHeart} size="lg" className="text-dark" />
           </div>
 
-          <div className="btn-cart">
-            <FontAwesomeIcon icon={faShoppingBasket} size="lg" className="text-dark" />
+          <div className="btn-sign-in">
+            <FontAwesomeIcon icon={faUser} size="lg" className="text-dark" />
+          </div>
+
+          <div className="btn-cart" onClick={() => setOpenCart(true)}>
+            <span className="products-count-badge">0</span>
+            <FontAwesomeIcon icon={faShoppingCart} size="lg" className="text-dark" />
+          </div>
+
+          <div className="btn-change-navbar-type">
+            {
+              type === 'normal'
+                ? <FontAwesomeIcon icon={faCircle} size="xs" className="text-dark" onClick={() => props.onTypeChange('fixed')} />
+                : type === 'fixed'
+                    ? <FontAwesomeIcon icon={faCircleDot} size="xs" className="text-dark" onClick={() => props.onTypeChange('normal')} />
+                    : ''
+            }
           </div>
         </div>
       </div>
+
+      <SearchModal open={showSearchModal} onClose={closeSearchModal} />
+
+      <Cart open={openCart} onClose={closeCart} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import {
   BrowserRouter,
@@ -14,9 +14,16 @@ import productsSlice from './features/products-page/productsSlice';
 import SearchPage from './features/search-page/SearchPage';
 import Footer from './features/footer/Footer';
 import CategoryPage from './features/categories-page/CategoriesPage';
+import navbarSlice from './features/navbar/navbarSlice';
+import { useAppSelector } from './app/hooks';
+import Notification from './features/notification/Notification';
 
 function App() {
+  const navbarType = useAppSelector((state) => state.navbar.type);
+  const notifications = useAppSelector((state) => state.notification.notifications);
+
   useEffect(() => {
+    store.dispatch(navbarSlice.actions.loadTypePreference({ loadFrom: 'localstorage' }));
     store.dispatch(productsSlice.actions.getCategories({}));
 
     /**
@@ -26,10 +33,14 @@ function App() {
     // end of remove this
   }, []);
 
+  const onNavbarTypeChange = (type: string) => {
+    store.dispatch(navbarSlice.actions.changeType({ type }));
+  };
+
   return (
     <BrowserRouter /*basename="/eshop-template"*/>
-      <div className="App">
-        <Navbar></Navbar>
+      <div className={`App ${navbarType === 'fixed' ? 'navbar-fixed' : ''}`}>
+        <Navbar onTypeChange={onNavbarTypeChange} ></Navbar>
         
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -41,6 +52,14 @@ function App() {
         </Routes>
 
         <Footer></Footer>
+
+        {
+          notifications.map((notification: any, i :number) => {
+            return (
+              <Notification id={notification.id} type={notification.type} text={notification.text} index={i} />
+            );
+          })
+        }
       </div>
     </BrowserRouter>
   );

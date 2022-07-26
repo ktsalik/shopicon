@@ -23,17 +23,17 @@
   justify-content: space-between;
   margin: 50px 0;
 }
-.HomePage .categories .categories__btn-see-all {
+.HomePage .categories .categories__btn-all {
   text-decoration: none;
   align-self: center;
   padding: 10px 20px;
   border: 1px solid #5f71e6;
   border-radius: 27px;
   background: #FFFFFF;
-  font-size: 18px;
+  font-size: 14px;
   color: #5f71e6;
 }
-.HomePage .categories .categories__btn-see-all:hover {
+.HomePage .categories .categories__btn-all:hover {
   background-color: #5f71e6;
   color: #FFFFFF;
 }

@@ -103,7 +103,7 @@ const SearchModal = (props: SearchModalProps) => {
   const quickSearch = () => {
     axios.get(`http://localhostt/eshop-server/quick-search`).then((response) => {
       /*
-        server response data structure
+        server response should be a JSON array as the example below
         [
           {
             "id": 1,
@@ -164,8 +164,6 @@ const SearchModal = (props: SearchModalProps) => {
           value={searchQuery}
           onKeyDown={onInputKeyDown}></input>
 
-        <span style={{position: 'absolute', top: '40%', left: '13%', width: '400px', color: '#FFFFFF'}}>Try searching for "Headphones" or "Microphone"</span>
-
         <div
           className={`autocomplete ${quickSearchResults.length > 0 ? '' : 'd-none'}`}
         >
@@ -211,6 +209,8 @@ const SearchModal = (props: SearchModalProps) => {
           }
         </div>
       </div>
+
+      <span style={{width: '400px', marginTop: '50px', color: '#FFFFFF'}}>Try searching for "Headphones" or "Microphone"</span>
     </div>
   );
 };

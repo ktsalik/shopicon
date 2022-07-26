@@ -6,6 +6,13 @@
   background: #FFFFFF;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+.Navbar.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
 .Navbar .content {
   position: relative;
   width: 1180px;
@@ -97,25 +104,30 @@
 .Navbar .content .right-menu {
   position: absolute;
   right: 0;
-  display: flex;
-}
-.Navbar .content .right-menu .btn-search {
-  height: 75px;
+  top: 50%;
+  transform: translate(0%, -50%);
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
-.Navbar .content .right-menu .btn-favourites {
-  height: 75px;
-  display: flex;
-  align-items: center;
+.Navbar .content .right-menu [class^=btn-] {
   margin-left: 25px;
   cursor: pointer;
 }
 .Navbar .content .right-menu .btn-cart {
-  height: 75px;
+  position: relative;
+}
+.Navbar .content .right-menu .btn-cart .products-count-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 23px;
+  height: 23px;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-left: 25px;
-  cursor: pointer;
+  border-radius: 50%;
+  background-color: #5f71e6;
+  font-size: 12px;
+  font-family: "Open Sans Bold";
+  color: #FFFFFF;
 }/*# sourceMappingURL=Navbar.css.map */
