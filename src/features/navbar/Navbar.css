@@ -84,6 +84,7 @@
   text-decoration: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: calc(100% - 30px - 30px);
   padding: 10px 30px;
 }

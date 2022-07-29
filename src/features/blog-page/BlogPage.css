@@ -1,0 +1,21 @@
+.Blog {
+  width: 1180px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.Blog .breadcrumbs {
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+.Blog .breadcrumbs a {
+  text-decoration: none;
+  color: #666666;
+}
+.Blog .breadcrumbs > * {
+  margin: 0 3px;
+  color: #666666;
+}
+.Blog .article-list {
+  width: 100%;
+}/*# sourceMappingURL=BlogPage.css.map */

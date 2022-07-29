@@ -37,7 +37,7 @@ const Cart = (props: CartComponentProps) => {
             <span>$0.00</span>
           </div>
 
-          <Link to="/cart" className="link badge-primary" onClick={close}>View cart page</Link>
+          <Link to="/cart" className="link badge-primary" onClick={close}>View Cart</Link>
         </div>
 
         <Link to="/checkout" className="btn-checkout" onClick={close}>

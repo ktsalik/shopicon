@@ -48,6 +48,7 @@ const Products = () => {
     name: '',
     images: [],
     parent: -1,
+    productsCount: 0,
   };
 
   let parentBrowsingCategory: ProductCategory = {
@@ -55,6 +56,7 @@ const Products = () => {
     name: '',
     images: [],
     parent: -1,
+    productsCount: 0,
   };
   
   if (params.categoryId) {

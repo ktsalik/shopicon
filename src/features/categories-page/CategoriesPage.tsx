@@ -15,13 +15,14 @@ const CategoryPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [params.parent]);
+  }, [params.id]);
 
   let browsingCategory: ProductCategory = {
     id: -1,
     name: '',
     images: [],
     parent: -1,
+    productsCount: 0,
   };
 
   let parentBrowsingCategory: ProductCategory = {
@@ -29,11 +30,12 @@ const CategoryPage = () => {
     name: '',
     images: [],
     parent: -1,
+    productsCount: 0,
   };
   
-  if (params.parent) {
+  if (params.id) {
     // get browsing category
-    const browsingCategoryIndex = categories.findIndex((c: ProductCategory) => c.id.toString() == params.parent);
+    const browsingCategoryIndex = categories.findIndex((c: ProductCategory) => c.id.toString() == params.id);
     if (browsingCategoryIndex > -1) {
       browsingCategory = categories[browsingCategoryIndex];
     }
@@ -64,9 +66,9 @@ const CategoryPage = () => {
       
       <div className="category-list">
         {
-          params.parent
+          params.id
             // render child categories
-            ? categories.filter((c: any) => c.parent.toString() === params.parent).map((category: any, i: number) => {
+            ? categories.filter((c: any) => c.parent.toString() === params.id).map((category: any, i: number) => {
                 return (
                   <CategoryItem
                     key={i}

@@ -17,6 +17,7 @@ const CategoryItem = (props: CategoryItemProps) => {
     name: '',
     images: [],
     parent: -1,
+    productsCount: 0,
   };
 
   const categoryIndex = categories.findIndex((c: any) => c.id.toString() === props.id);
@@ -69,7 +70,8 @@ const CategoryItem = (props: CategoryItemProps) => {
             </div>
           </div>
         </div>
-        <div className="name text-dark">{category.name}</div>
+        <span className="name text-dark">{category.name}</span>
+        <span className={`products-count ${category.productsCount === 0 ? 'd-none' : ''}`}>{category.productsCount} Products</span>
       </Link>
     </div>
   );

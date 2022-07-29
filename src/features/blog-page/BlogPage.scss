@@ -1,0 +1,25 @@
+.Blog {
+  width: 1180px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  .breadcrumbs {
+    width: 100%;
+    margin: 0 auto;
+    padding: 70px 0;
+
+    a {
+      text-decoration: none;
+      color: #666666;
+    }
+
+    & > * {
+      margin: 0 3px;
+      color: #666666;
+    }
+  }
+  
+  .article-list {
+    width: 100%;
+  }
+}

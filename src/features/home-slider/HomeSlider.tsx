@@ -9,8 +9,6 @@ import { baseUrl } from '../../helpers';
 const HomeSlider = () => {
   const [sliderData, setSliderData] = useState<any>([]);
 
-  const sliderElRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     axios.get(`http://localhostt/eshop-server/slider-data`).then((response) => {
       // the server response should be a JSON array as the example below
@@ -36,12 +34,10 @@ const HomeSlider = () => {
       */
       setSliderData(response.data);
 
-      setTimeout(() => {
-        new Splide('.splide', {
-          pagination: false,
-          type: 'loop',
-        }).mount();
-      });
+      new Splide('.splide', {
+        pagination: false,
+        type: 'loop',
+      }).mount();
     }).catch((err) => {
       /**
        * remove this when you setup the server
@@ -72,21 +68,17 @@ const HomeSlider = () => {
           buttonUrl: '/product/3',
         },
       ]);
-      // end of remove this
 
-      setTimeout(() => {
-        new Splide('.splide', {
-          pagination: false,
-        }).mount();
-      });
+      new Splide('.splide', {
+        pagination: false,
+        type: 'loop',
+      }).mount();
+      // end of remove this
     });
   }, []);
 
   return (
-    <div
-      className="HomeSlider"
-      ref={sliderElRef}
-    >
+    <div className="HomeSlider">
       <div className="splide" role="group" aria-label="Splide Basic HTML Example">
         <div className="splide__track">
           <ul className="splide__list">

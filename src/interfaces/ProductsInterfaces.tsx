@@ -8,4 +8,5 @@ export interface ProductCategory {
   name: string;
   images: string[],
   parent: number;
+  productsCount: number;
 };

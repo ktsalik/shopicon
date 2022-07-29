@@ -57,7 +57,7 @@
 }
 
 .Product.grid {
-  width: calc(33% - 1px - 1px - 20px - 20px);
+  width: calc(25% - 1px - 1px - 20px - 20px);
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -75,11 +75,21 @@
 }
 .Product.grid .details {
   align-items: center;
+  gap: 0;
+  padding: 0;
+  padding-bottom: 15px;
 }
 .Product.grid .details a .name {
   display: flex;
   min-height: 48px;
+  margin: 0;
+  padding: 0 20px;
+  font-size: 16px;
+}
+.Product.grid .details .price {
+  margin: 0;
 }
 .Product.grid .btn-add {
-  width: 100%;
+  width: 80%;
+  margin-top: 10px;
 }/*# sourceMappingURL=ProductCard.css.map */

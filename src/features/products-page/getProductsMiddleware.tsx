@@ -43,7 +43,6 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
       /**
        * remove this when you setup the server
        */
-      setTimeout(() => {
       store.dispatch({
         type: 'products/productsLoaded',
         payload: {
@@ -394,7 +393,6 @@ const productsMiddleware = (store: any) => (next: any) => (action: any) => {
           page_count: 20,
         },
       });
-    }, 5000)
       // end of remove this
     });
   }

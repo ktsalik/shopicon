@@ -1,0 +1,55 @@
+.ArticlePage {
+  width: 1180px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+  .breadcrumbs {
+    width: 100%;
+    margin: 0 auto;
+    padding: 70px 0;
+
+    a {
+      text-decoration: none;
+      color: #666666;
+    }
+
+    & > * {
+      margin: 0 3px;
+      color: #666666;
+    }
+  }
+  
+  .article {
+    display: flex;
+    flex-direction: column;
+
+    .image {
+      display: flex;
+      width: 100%;
+
+      img {
+        margin: 0 auto;
+      }
+    }
+
+    .date {
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+
+    .title {
+      margin-top: 10px;
+      margin-left: 10px;
+      font-size: 24px;
+    }
+
+    .content {
+      margin-top: 30px;
+      white-space: pre-wrap;
+      line-height: 25px;
+    }
+  }
+}

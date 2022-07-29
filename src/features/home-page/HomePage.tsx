@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [newArrivalProducts, setNewArrivalProducts] = useState<any[]>([]);
-  const [bestSellingProducts, setBestSellingProducts] = useState<any[]>([]);
-  const [bestRatedProducts, setBestRatedProducts] = useState<any[]>([]);
+  const [bestSellerProducts, setBestSellerProducts] = useState<any[]>([]);
+  const [saleProducts, setSaleProducts] = useState<any[]>([]);
 
   /**
    * remove this when you setup the server
@@ -27,7 +27,7 @@ const HomePage = () => {
         price: p.price,
       };
     }).slice(0, 5)));
-    setBestSellingProducts(shuffle(demoProducts.map((p: any) => {
+    setBestSellerProducts(shuffle(demoProducts.map((p: any) => {
       return {
         id: p.id,
         thumbnail: p.images[0],
@@ -35,7 +35,7 @@ const HomePage = () => {
         price: p.price,
       };
     }).slice(0, 5)));
-    setBestRatedProducts(shuffle(demoProducts.map((p: any) => {
+    setSaleProducts(shuffle(demoProducts.map((p: any) => {
       return {
         id: p.id,
         thumbnail: p.images[0],
@@ -72,7 +72,6 @@ const HomePage = () => {
       /**
        * remove this when you setup the server
        */
-      setTimeout(() => {
       setFeaturedProducts([
         {
           id: 2,
@@ -89,6 +88,13 @@ const HomePage = () => {
           price: 27.50,
         },
         {
+          id: 4,
+          thumbnail: 'earphone-1.jpeg',
+          title: 'White Wireless Bluetooth Earphone',
+          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
+          price: 25.00,
+        },
+        {
           id: 5,
           thumbnail: 'earphone-2.jpeg',
           title: 'Black Earphone',
@@ -96,7 +102,6 @@ const HomePage = () => {
           price: 21.00,
         },
       ]);
-    }, 5000)
       // end of remove this
     });
 
@@ -120,7 +125,7 @@ const HomePage = () => {
               price: 27.50,
             },
           ],
-          best_selling: [
+          best_sellers: [
             {
               id: 2,
               thumbnail: 'headphones-2.jpeg',
@@ -136,7 +141,7 @@ const HomePage = () => {
               price: 27.50,
             },
           ],
-          best_rated: [
+          sale: [
             {
               id: 2,
               thumbnail: 'headphones-2.jpeg',
@@ -155,8 +160,8 @@ const HomePage = () => {
         }
       */
       setNewArrivalProducts(response.data.new_arrivals);
-      setBestSellingProducts(response.data.best_selling);
-      setBestRatedProducts(response.data.best_rated);
+      setBestSellerProducts(response.data.best_sellers);
+      setSaleProducts(response.data.sale);
     });
 
     setTimeout(() => {
@@ -216,11 +221,11 @@ const HomePage = () => {
         </div>
 
         <div>
-          <h2>Best Selling</h2>
+          <h2>Best Sellers</h2>
 
           <div className="product-list">
             {
-              bestSellingProducts.map((product: any, i: number) => {
+              bestSellerProducts.map((product: any, i: number) => {
                 return (
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
                     <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
@@ -234,11 +239,11 @@ const HomePage = () => {
         </div>
 
         <div>
-          <h2>Best Rated</h2>
+          <h2>Sale Products</h2>
 
           <div className="product-list">
             {
-              bestRatedProducts.map((product: any, i: number) => {
+              saleProducts.map((product: any, i: number) => {
                 return (
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
                     <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>

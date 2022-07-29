@@ -96,8 +96,15 @@
   }
 
   .name {
-    padding: 20px 0;
+    padding: 10px 0;
     border-top: 1px solid #CCC;
     text-align: center;
+    font-size: 16px;
+  }
+
+  .products-count {
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 14px;
   }
 }

@@ -17,6 +17,8 @@ import CategoryPage from './features/categories-page/CategoriesPage';
 import navbarSlice from './features/navbar/navbarSlice';
 import { useAppSelector } from './app/hooks';
 import Notification from './features/notification/Notification';
+import BlogPage from './features/blog-page/BlogPage';
+import ArticlePage from './features/article-page/ArticlePage';
 
 function App() {
   const navbarType = useAppSelector((state) => state.navbar.type);
@@ -45,10 +47,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/categories" element={<CategoryPage />}></Route>
-          <Route path="/categories/:parent" element={<CategoryPage />}></Route>
+          <Route path="/categories/:id" element={<CategoryPage />}></Route>
           <Route path="/products/:categoryId" element={<Products />}></Route>
           <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/search/:query" element={<SearchPage />}></Route>
+          <Route path="/blog" element={<BlogPage />}></Route>
+          <Route path="/article/:id" element={<ArticlePage />}></Route>
         </Routes>
 
         <Footer></Footer>

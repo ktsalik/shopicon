@@ -1,0 +1,46 @@
+.ArticlePage {
+  width: 1180px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+.ArticlePage .breadcrumbs {
+  width: 100%;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+.ArticlePage .breadcrumbs a {
+  text-decoration: none;
+  color: #666666;
+}
+.ArticlePage .breadcrumbs > * {
+  margin: 0 3px;
+  color: #666666;
+}
+.ArticlePage .article {
+  display: flex;
+  flex-direction: column;
+}
+.ArticlePage .article .image {
+  display: flex;
+  width: 100%;
+}
+.ArticlePage .article .image img {
+  margin: 0 auto;
+}
+.ArticlePage .article .date {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.ArticlePage .article .title {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 24px;
+}
+.ArticlePage .article .content {
+  margin-top: 30px;
+  white-space: pre-wrap;
+  line-height: 25px;
+}/*# sourceMappingURL=ArticlePage.css.map */

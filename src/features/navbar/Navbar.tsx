@@ -98,8 +98,11 @@ const Navbar = (props: NavbarComponentProps) => {
                           ? <div className="submenu">
                               {
                                 categories.filter((c: ProductCategory) => c.parent === category.id).map((c: ProductCategory, i: number) => {
+                                  const childCategoriesExist = categories.some((cat: ProductCategory) => cat.parent === c.id);
+                                  const clickUrl = childCategoriesExist ? `/categories/${c.id}` : `/products/${c.id}`;
+
                                   return (
-                                    <Link key={i} to={`/products/${c.id}`} className="text-dark" onClick={closeCategoriesMenu}>{c.name}</Link>
+                                    <Link key={i} to={clickUrl} className="text-dark" onClick={closeCategoriesMenu}>{c.name}</Link>
                                   );
                                 })
                               }
@@ -112,7 +115,7 @@ const Navbar = (props: NavbarComponentProps) => {
               }
             </div>
           </div>
-          <Link to="/contact" className="text-dark">Blog</Link>
+          <Link to="/blog" className="text-dark">Blog</Link>
           <Link to="/contact" className="text-dark">Contact Us</Link>
         </div>
         
