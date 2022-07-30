@@ -20,6 +20,7 @@ import Notification from './features/notification/Notification';
 import BlogPage from './features/blog-page/BlogPage';
 import ArticlePage from './features/article-page/ArticlePage';
 import TermsPage from './features/terms-page/TermsPage';
+import ContactPage from './features/contact-page/ContactPage';
 
 function App() {
   const navbarType = useAppSelector((state) => state.navbar.type);
@@ -55,6 +56,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />}></Route>
           <Route path="/article/:id" element={<ArticlePage />}></Route>
           <Route path="/terms" element={<TermsPage />}></Route>
+          <Route path="/contact" element={<ContactPage />}></Route>
         </Routes>
 
         <Footer></Footer>

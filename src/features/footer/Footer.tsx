@@ -47,7 +47,7 @@ const Footer = () => {
 
         <div className="contact-info">
           <h3 className="text-light">CONTACT</h3>
-          <span>Phone: +30 210 1234 567</span>
+          <span>Phone: (555) 555-1234</span>
           <span>Email: info@shopicon.com</span>
           <span>Monday - Friday: 10:00-17:00</span>
         </div>
