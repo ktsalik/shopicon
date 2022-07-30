@@ -30,7 +30,7 @@
   border: 1px solid #5f71e6;
   border-radius: 27px;
   background: #FFFFFF;
-  font-size: 14px;
+  font-size: 16px;
   color: #5f71e6;
 }
 .HomePage .categories .categories__btn-all:hover {
@@ -65,13 +65,13 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 16px;
   color: #666666;
 }
 .HomePage .statistic-products .product-list .product-item .product-item__price {
   flex: 2;
   padding-left: 10px;
   text-align: right;
-  font-size: 14px;
+  font-size: 16px;
   color: #666666;
 }/*# sourceMappingURL=HomePage.css.map */

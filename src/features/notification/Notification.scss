@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .Notification {
   position: fixed;
   display: flex;
@@ -17,7 +19,7 @@
 
     .message {
       margin-left: 10px;
-      font-size: 14px;
+      font-size: $small-font-size;
     }
 
     .btn-close {
@@ -35,7 +37,7 @@
   &.info {
 
     .content {
-      background-color: #5f71e6;
+      background-color: $primary-color;
     }
   }
 }

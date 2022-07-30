@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .Pagination {
   width: 100%;
   display: flex;
@@ -14,11 +16,12 @@
     margin: 0 10px;
     border: 1px solid #CCCCCC;
     border-radius: 50%;
+    font-size: $normal-font-size;
     cursor: pointer;
 
     &.current {
-      background-color: #5f71e6;
-      color: #FFFFFF;
+      background-color: $button-primary-background;
+      color: $button-primary-text;
     }
   }
 }

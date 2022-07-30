@@ -6,7 +6,7 @@ import { baseUrl } from '../../helpers';
 const ProductCard = (props: ProductComponentInterface) => {
   return (
     <div
-      className={`Product ${props.type}`}
+      className={`ProductCard ${props.type}`}
     >
       <div className="thumbnail">
         <Link to={`/product/${props.data.id}`}>

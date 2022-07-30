@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .ProductPage {
 
   .breadcrumbs {
@@ -8,12 +10,12 @@
 
     a {
       text-decoration: none;
-      color: #666666;
+      color: $less-dark-text;
     }
 
     & > * {
       margin: 0 3px;
-      color: #666666;
+      color: $less-dark-text;
     }
   }
   
@@ -82,20 +84,20 @@
       .title {
         margin-left: 10px;
         font-size: 24px;
-        color: #444444;
+        color: $dark-text;
       }
 
       .price {
         margin-left: 10px;
         margin-top: 20px;
         font-size: 22px;
-        color: #444444;
+        color: $dark-text;
       }
 
       .available {
         margin-left: 10px;
         margin-top: 20px;
-        font-size: 16px;
+        font-size: $normal-font-size;
 
         & > span:nth-of-type(2) {
           margin-left: 5px;
@@ -106,7 +108,7 @@
         margin-left: 10px;
         margin-top: 40px;
         font-size: 20px;
-        color: #444444;
+        color: $dark-text;
       }
 
       .input-quantity {
@@ -116,8 +118,8 @@
         margin-left: 10px;
         padding: 5px;
         border: 1px solid #CCCCCC;
-        font-size: 18px;
-        color: #444444;
+        font-size: $large-font-size;
+        color: $dark-text;
       }
 
       .btn-add-to-cart {
@@ -126,9 +128,9 @@
         margin-top: 10px;
         padding: 10px 20px;
         border-radius: 30px;
-        background: #5f71e6;
-        font-size: 18px;
-        color: #FFFFFF;
+        background: $button-primary-background;
+        font-size: $large-font-size;
+        color: $button-primary-text;
         cursor: pointer;
       }
     }
@@ -138,7 +140,7 @@
     width: 1180px;
     max-width: 100%;
     margin: 50px auto;
-    color: #444444;
+    color: $dark-text;
 
     .tabs {
       display: flex;

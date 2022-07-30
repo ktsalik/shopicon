@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 @font-face {
   font-family: 'Comfortaa';
   src: url(../../assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf);
@@ -32,14 +34,14 @@
       font-size: 19px;
 
       svg {
-        color: #5f71e6;
+        color: $primary-color;
       }
 
       a {
         text-decoration: none;
         display: flex;
         align-items: center;
-        color: #444444;
+        color: $dark-text;
       }
     }
 
@@ -150,10 +152,47 @@
           justify-content: center;
           align-items: center;
           border-radius: 50%;
-          background-color: #5f71e6;
+          background-color: $primary-color;
           font-size: 12px;
           font-family: 'Open Sans Bold';
           color: #FFFFFF;
+        }
+      }
+
+      .btn-sign-in {
+        position: relative;
+        height: 75px;
+        display: flex;
+        align-items: center;
+
+        .user-dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translate(-50%, 0%);
+          width: 150px;
+          display: none;
+          flex-direction: column;
+          padding: 10px;
+          background-color: #FFFFFF;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+          & > a {
+            text-decoration: none;
+            padding: 10px;
+            font-size: $large-font-size;
+
+            span {
+              margin-left: 10px;
+            }
+          }
+        }
+
+        &:hover {
+
+          .user-dropdown-menu {
+            display: flex;
+          }
         }
       }
     }

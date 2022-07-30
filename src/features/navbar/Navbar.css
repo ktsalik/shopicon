@@ -131,4 +131,33 @@
   font-size: 12px;
   font-family: "Open Sans Bold";
   color: #FFFFFF;
+}
+.Navbar .content .right-menu .btn-sign-in {
+  position: relative;
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+.Navbar .content .right-menu .btn-sign-in .user-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 150px;
+  display: none;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #FFFFFF;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.Navbar .content .right-menu .btn-sign-in .user-dropdown-menu > a {
+  text-decoration: none;
+  padding: 10px;
+  font-size: 18px;
+}
+.Navbar .content .right-menu .btn-sign-in .user-dropdown-menu > a span {
+  margin-left: 10px;
+}
+.Navbar .content .right-menu .btn-sign-in:hover .user-dropdown-menu {
+  display: flex;
 }/*# sourceMappingURL=Navbar.css.map */

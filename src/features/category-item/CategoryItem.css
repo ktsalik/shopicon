@@ -38,7 +38,7 @@
 .CategoryItem .images .big-image {
   display: flex;
   align-items: center;
-  border-right: 1px solid #CCC;
+  border-right: 1px solid #CCCCCC;
 }
 .CategoryItem .images .big-image .no-image-element {
   width: 210px;
@@ -83,7 +83,7 @@
 }
 .CategoryItem .name {
   padding: 10px 0;
-  border-top: 1px solid #CCC;
+  border-top: 1px solid #CCCCCC;
   text-align: center;
   font-size: 16px;
 }

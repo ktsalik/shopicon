@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .HomeSlider {
   width: 100%;
 
@@ -41,9 +43,9 @@
         margin-top: 30px;
         padding: 10px 20px;
         border-radius: 30px;
-        background-color: #5f71e6;
-        font-size: 18px;
-        color: #FFFFFF;
+        background-color: $button-primary-background;
+        font-size: $large-font-size;
+        color: $button-primary-text;
         cursor: pointer;
       }
     }

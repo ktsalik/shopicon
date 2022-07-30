@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .Footer {
   background-color: #111111;
 
@@ -15,7 +17,7 @@
         text-decoration: none;
         font-size: 20px;
         font-family: Comfortaa;
-        color: #EEEEEE;
+        color: $light-text;
       }
     }
 
@@ -25,14 +27,14 @@
       flex-direction: column;
 
       h3 {
-        font-size: 14px;
+        font-size: $small-font-size;
       }
 
       a {
         text-decoration: none;
         margin: 5px 0;
-        font-size: 14px;
-        color: #EEEEEE;
+        font-size: $small-font-size;
+        color: $light-text;
       }
     }
 
@@ -42,13 +44,13 @@
       flex-direction: column;
 
       h3 {
-        font-size: 14px;
+        font-size: $small-font-size;
       }
 
       a {
         text-decoration: none;
         margin: 5px 0;
-        font-size: 14px;
+        font-size: $small-font-size;
         color: #EEEEEE;
       }
     }
@@ -59,12 +61,12 @@
       flex-direction: column;
 
       h3 {
-        font-size: 14px;
+        font-size: $small-font-size;
       }
 
       span {
         margin: 5px 0;
-        font-size: 14px;
+        font-size: $small-font-size;
         color: #EEEEEE;
       }
     }

@@ -1,4 +1,6 @@
-.Product {
+@import '../../variables.scss';
+
+.ProductCard {
   width: calc(60% - 1px - 1px);
   display: flex;
   flex-direction: row;
@@ -30,25 +32,25 @@
 
     a {
       text-decoration: none;
-      color: #666666;
+      color: $less-dark-text;
     }
 
     .name {
       margin-left: 10px;
-      color: #666666;
-      font-size: 18px;
+      color: $less-dark-text;
+      font-size: $large-font-size;
     }
 
     .description {
       margin-left: 10px;
-      color: #666666;
-      font-size: 16px;
+      color: $less-dark-text;
+      font-size: $normal-font-size;
     }
 
     .price {
       margin-left: 10px;
       color: #444444;
-      font-size: 16px;
+      font-size: $normal-font-size;
     }
 
     .btn-add {
@@ -56,15 +58,15 @@
       border: none;
       padding: 10px;
       border-radius: 20px;
-      background-color: #5f71e6;
-      font-size: 14px;
+      background-color: $primary-color;
+      font-size: $small-font-size;
       color: #FFFFFF;
       cursor: pointer;
     }
   }
 }
 
-.Product.grid {
+.ProductCard.grid {
   width: calc(25% - 1px - 1px - 20px - 20px);
   display: flex;
   flex-direction: column;
@@ -97,7 +99,7 @@
         min-height: 48px;
         margin: 0;
         padding: 0 20px;
-        font-size: 16px;
+        font-size: $normal-font-size;
       }
     }
 

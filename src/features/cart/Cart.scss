@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .Cart {
   position: fixed;
   top: 0;
@@ -22,7 +24,7 @@
     border-bottom: 1px solid #CCCCCC;
 
     span {
-      font-size: 18px;
+      font-size: $large-font-size;
     }
 
     .products-count-badge {
@@ -33,10 +35,10 @@
       align-items: center;
       margin-left: 10px;
       border-radius: 50%;
-      background-color: #5f71e6;
+      background-color: $primary-color;
       font-size: 12px;
       font-family: 'Open Sans Bold';
-      color: #FFFFFF;
+      color: $button-primary-text;
     }
 
     .btn-close {
@@ -55,7 +57,7 @@
     border-bottom: 1px solid #CCCCCC;
     
     .cart-empty-message {
-      font-size: 14px;
+      font-size: $small-font-size;
     }
   }
 
@@ -71,9 +73,9 @@
       margin-top: 20px;
       padding: 5px 10px;
       border-radius: 5px;
-      background-color: #5f71e6;
-      font-size: 16px;
-      color: #FFFFFF;
+      background-color: $button-primary-background;
+      font-size: $normal-font-size;
+      color: $button-primary-text;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
   }

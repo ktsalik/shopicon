@@ -20,6 +20,8 @@ const ContactPage = () => {
     <div className="ContactPage">
       <h1 className="title text-dark">Contact Us</h1>
 
+      <span className="text-dark fs-3 mt-3 mx-auto">Drop Us a Message</span>
+
       <div className="form">
         <div className="d-flex flex-direction-row">
           <div className="form__input">

@@ -4,7 +4,7 @@ import {
   Link,
 } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBasket, faCaretRight, faShop, faHeart, faSearch, faClose, faUser, faCircleDot, faCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBasket, faCaretRight, faShop, faHeart, faSearch, faClose, faUser, faCircleDot, faCircle, faShoppingCart, faSignInAlt, faFileCircleCheck, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 import { ProductCategory } from '../../interfaces/ProductsInterfaces';
 import { useAppSelector } from '../../app/hooks';
 import SearchModal from '../search-modal/SearchModal';
@@ -130,6 +130,17 @@ const Navbar = (props: NavbarComponentProps) => {
 
           <div className="btn-sign-in">
             <FontAwesomeIcon icon={faUser} size="lg" className="text-dark" />
+            
+            <div className="user-dropdown-menu">
+              <Link to="/" className="text-dark">
+                <FontAwesomeIcon icon={faSignInAlt} />
+                <span>Sign In</span>
+              </Link>
+              <Link to="/" className="text-dark">
+                <FontAwesomeIcon icon={faUserCheck} />
+                <span>Sign Up</span>
+              </Link>
+            </div>
           </div>
 
           <div className="btn-cart" onClick={() => setOpenCart(true)}>

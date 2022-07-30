@@ -1,11 +1,15 @@
+@import './variables.scss';
+
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf);
 }
+
 @font-face {
-  font-family: "Open Sans Bold";
+  font-family: 'Open Sans Bold';
   src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-SemiBold.ttf);
 }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -16,11 +20,11 @@
 }
 
 body, button, input {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: "Open Sans Bold", sans-serif;
+  font-family: 'Open Sans Bold', sans-serif;
 }
 
 .hidden {
@@ -117,11 +121,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .text-dark {
-  color: #444444 !important;
+  color: $dark-text !important;
 }
 
 .text-light {
-  color: #EEEEEE !important;
+  color: $light-text !important;
 }
 
 .text-bold {
@@ -129,7 +133,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .text-primary {
-  color: #5f71e6 !important;
+  color: $primary-text !important;
 }
 
 .text-center {
@@ -141,31 +145,31 @@ h1, h2, h3, h4, h5 {
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  background-color: #5f71e6;
-  font-size: 18px;
-  color: #FFFFFF;
+  background-color: $button-primary-background;
+  font-size: $large-font-size;
+  color: $button-primary-text;
   cursor: pointer;
 }
 
 .btn-primary.outline {
-  border: 1px solid #5f71e6;
+  border: 1px solid $primary-color;
   background-color: #FFFFFF;
-  color: #5f71e6;
+  color: $primary-text;
 }
 
 .btn-primary.outline:hover {
-  background-color: #5f71e6;
+  background-color: $button-primary-background;
   color: #FFFFFF;
 }
 
 .badge-primary {
   padding: 3px 10px !important;
   border-radius: 27px !important;
-  background-color: #5f71e6 !important;
+  background-color: $primary-color !important;
   font-size: 14px !important;
   color: #FFFFFF !important;
 }
 
 .link {
   text-decoration: none;
-}/*# sourceMappingURL=App.css.map */
+}

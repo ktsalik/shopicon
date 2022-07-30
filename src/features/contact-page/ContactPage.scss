@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .ContactPage {
   width: 1180px;
   max-width: 100%;
@@ -8,6 +10,7 @@
 
   .title {
     text-align: center;
+    font-size: 34px;
   }
 
   .form {
@@ -16,7 +19,7 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 30px;
 
     .form__input {
       width: 100%;
@@ -35,7 +38,7 @@
         padding: 10px;
         border-radius: 3px;
         background: #FDFDFD;
-        font-size: 16px;
+        font-size: $normal-font-size;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
       }
     }
@@ -54,8 +57,8 @@
   }
 
   .seperator {
-    width: 400px;
-    height: 2px;
+    width: 250px;
+    height: 1px;
     margin: 100px auto;
     background-color: #444444;
   }

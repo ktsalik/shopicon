@@ -8,6 +8,7 @@
 }
 .ContactPage .title {
   text-align: center;
+  font-size: 34px;
 }
 .ContactPage .form {
   width: 650px;
@@ -15,7 +16,7 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .ContactPage .form .form__input {
   width: 100%;
@@ -44,8 +45,8 @@
   align-items: center;
 }
 .ContactPage .seperator {
-  width: 400px;
-  height: 2px;
+  width: 250px;
+  height: 1px;
   margin: 100px auto;
   background-color: #444444;
 }
