@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './ArticleCard.css';
+import './ArticleCard.scss';
 
 interface ArticleCardComponentProps {
   data: any;

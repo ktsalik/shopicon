@@ -1,4 +1,4 @@
-import './ProductPage.css';
+import './ProductPage.scss';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";

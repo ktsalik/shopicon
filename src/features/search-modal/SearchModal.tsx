@@ -1,4 +1,4 @@
-import './SearchModal.css';
+import './SearchModal.scss';
 import React, { useEffect, useState } from "react";
 import { faClose, faMagnifyingGlassArrowRight, faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

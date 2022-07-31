@@ -1,4 +1,4 @@
-import './CategoriesPage.css';
+import './CategoriesPage.scss';
 import CategoryItem from '../category-item/CategoryItem';
 import { useAppSelector } from '../../app/hooks';
 import { Link, useParams } from 'react-router-dom';

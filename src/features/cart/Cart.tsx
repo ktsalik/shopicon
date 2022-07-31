@@ -1,7 +1,7 @@
 import { faClose, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import './Cart.css';
+import './Cart.scss';
 
 interface CartComponentProps {
   open: Boolean;

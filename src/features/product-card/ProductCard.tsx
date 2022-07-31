@@ -1,4 +1,4 @@
-import './ProductCard.css';
+import './ProductCard.scss';
 import { Link } from 'react-router-dom';
 import { ProductComponentInterface } from '../../interfaces/ProductsInterfaces';
 import { baseUrl } from '../../helpers';

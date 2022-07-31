@@ -1,4 +1,4 @@
-import './HomeSlider.css';
+import './HomeSlider.scss';
 import '@splidejs/splide/css';
 import Splide from '@splidejs/splide';
 import { useEffect, useRef, useState } from "react";

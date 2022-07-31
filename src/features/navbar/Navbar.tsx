@@ -1,4 +1,4 @@
-import './Navbar.css';
+import './Navbar.scss';
 import React, { useEffect, useState } from 'react';
 import {
   Link,
@@ -131,12 +131,12 @@ const Navbar = (props: NavbarComponentProps) => {
           <div className="btn-sign-in">
             <FontAwesomeIcon icon={faUser} size="lg" className="text-dark" />
             
-            <div className="user-dropdown-menu">
-              <Link to="/" className="text-dark">
+            <div className="account-dropdown-menu">
+              <Link to="/sign-in" className="text-dark">
                 <FontAwesomeIcon icon={faSignInAlt} />
                 <span>Sign In</span>
               </Link>
-              <Link to="/" className="text-dark">
+              <Link to="/sign-up" className="text-dark">
                 <FontAwesomeIcon icon={faUserCheck} />
                 <span>Sign Up</span>
               </Link>

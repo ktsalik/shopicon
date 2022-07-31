@@ -1,4 +1,4 @@
-import './SearchPage.css';
+import './SearchPage.scss';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ProductCard from '../product-card/ProductCard';

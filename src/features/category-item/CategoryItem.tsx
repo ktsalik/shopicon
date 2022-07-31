@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { baseUrl } from '../../helpers';
 import { ProductCategory } from '../../interfaces/ProductsInterfaces';
-import './CategoryItem.css';
+import './CategoryItem.scss';
 
 interface CategoryItemProps {
   id: string;

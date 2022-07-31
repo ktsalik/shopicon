@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter,
   Routes,
@@ -21,6 +21,7 @@ import BlogPage from './features/blog-page/BlogPage';
 import ArticlePage from './features/article-page/ArticlePage';
 import TermsPage from './features/terms-page/TermsPage';
 import ContactPage from './features/contact-page/ContactPage';
+import SignInPage from './features/signin-page/SignInPage';
 
 function App() {
   const navbarType = useAppSelector((state) => state.navbar.type);
@@ -57,6 +58,7 @@ function App() {
           <Route path="/article/:id" element={<ArticlePage />}></Route>
           <Route path="/terms" element={<TermsPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/sign-in" element={<SignInPage />}></Route>
         </Routes>
 
         <Footer></Footer>

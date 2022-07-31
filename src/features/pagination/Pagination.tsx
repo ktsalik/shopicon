@@ -1,6 +1,6 @@
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Pagination.css';
+import './Pagination.scss';
 
 interface PaginationComponentProps {
   page: number;

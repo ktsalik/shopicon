@@ -1,4 +1,4 @@
-import './HomePage.css';
+import './HomePage.scss';
 import { useEffect, useState } from 'react';
 import { baseUrl, shuffle } from '../../helpers';
 import HomeSlider from '../home-slider/HomeSlider';

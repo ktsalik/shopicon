@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
