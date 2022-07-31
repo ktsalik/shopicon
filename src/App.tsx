@@ -5,23 +5,24 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import { store } from './app/store';
+import { useAppSelector } from './app/hooks';
+import productsSlice from './features/products-page/productsSlice';
+import navbarSlice from './features/navbar/navbarSlice';
 import Navbar from './features/navbar/Navbar';
 import Home from './features/home-page/HomePage';
 import Products from './features/products-page/ProductsPage'
 import ProductPage from './features/product-page/ProductPage';
-import { store } from './app/store';
-import productsSlice from './features/products-page/productsSlice';
 import SearchPage from './features/search-page/SearchPage';
-import Footer from './features/footer/Footer';
 import CategoryPage from './features/categories-page/CategoriesPage';
-import navbarSlice from './features/navbar/navbarSlice';
-import { useAppSelector } from './app/hooks';
 import Notification from './features/notification/Notification';
 import BlogPage from './features/blog-page/BlogPage';
 import ArticlePage from './features/article-page/ArticlePage';
 import TermsPage from './features/terms-page/TermsPage';
 import ContactPage from './features/contact-page/ContactPage';
-import SignInPage from './features/signin-page/SignInPage';
+import SignInPage from './features/sign-in-page/SignInPage';
+import SignUpPage from './features/sign-up-page/SignUpPage';
+import Footer from './features/footer/Footer';
 
 function App() {
   const navbarType = useAppSelector((state) => state.navbar.type);
@@ -59,6 +60,7 @@ function App() {
           <Route path="/terms" element={<TermsPage />}></Route>
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>
+          <Route path="/sign-up" element={<SignUpPage />}></Route>
         </Routes>
 
         <Footer></Footer>

@@ -3,17 +3,33 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const SignInPage = () => {
-  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
   };
 
   const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const signin = () => {
+    axios.post(`http://localhostt/eshop-server/register`, {
+      email: email,
+      password: password,
+    }).then(() => {
+
+    }).catch((err) => {
+      /**
+       * remove this when you setup the server
+       */
+      
+      // end of remove this
+    });
   };
 
   return (
@@ -35,8 +51,8 @@ const SignInPage = () => {
           <span className="form__label">Email</span>
           <input
             type="email"
-            value={name}
-            onChange={onNameChange}
+            value={email}
+            onChange={onEmailChange}
           />
         </div>
 
@@ -49,7 +65,12 @@ const SignInPage = () => {
           />
         </div>
 
-        <button className="btn-sign-in btn-primary">Sign In</button>
+        <button
+          className="btn-sign-in btn-primary"
+          onClick={signin}
+        >
+          Sign In
+        </button>
       </div>
     </div>
   );

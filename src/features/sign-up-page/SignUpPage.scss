@@ -1,6 +1,6 @@
 @import '../../variables.scss';
 
-.SignInPage {
+.SignUpPage {
   width: 1180px;
   max-width: 100%;
   min-height: calc(100vh - 75px - 339px);
@@ -33,7 +33,7 @@
   }
 
   .form {
-    width: 500px;
+    width: 650px;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -61,7 +61,24 @@
       }
     }
 
-    .btn-sign-in {
+    .terms {
+      display: flex;
+      align-items: center;
+      margin-top: 50px;
+
+      input[type="checkbox"] {
+        zoom: 1.3;
+      }
+
+      label {
+        margin-left: 3px;
+        font-size: $small-font-size;
+        color: $less-dark-text;
+        cursor: pointer;
+      }
+    }
+
+    .btn-sign-up {
       margin-top: 30px;
     }
   }
