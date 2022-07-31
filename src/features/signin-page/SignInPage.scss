@@ -1,0 +1,68 @@
+@import '../../variables.scss';
+
+.SignInPage {
+  width: 1180px;
+  max-width: 100%;
+  min-height: calc(100vh - 75px - 339px);
+  margin: 0 auto;
+
+  .account-page-switch {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    .seperator {
+      font-size: $large-font-size;
+      color: $dark-text;
+    }
+
+    a {
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: $large-font-size;
+      color: $dark-text;
+
+      &.active {
+        color: $primary-text;
+      }
+
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 100px 0;
+
+    .form__input {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+
+      .form__label {
+        font-size: $small-font-size;
+        color: $dark-text;
+      }
+
+      input {
+        outline: none;
+        border: none;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        font-size: $large-font-size;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+    }
+
+    .btn-sign-in {
+      margin-top: 30px;
+    }
+  }
+}
