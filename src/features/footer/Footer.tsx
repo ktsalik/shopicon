@@ -1,9 +1,8 @@
 import './Footer.scss';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
-import { useAppSelector } from '../../app/hooks';
-import { ProductCategory } from '../../interfaces/ProductsInterfaces';
 
 const Footer = () => {
 
@@ -32,7 +31,7 @@ const Footer = () => {
         <div className="category-links">
           <h3 className="text-light">SHOP CATEGORIES</h3>
           {
-            categories.filter((category: ProductCategory) => category.parent == 0).map((category: ProductCategory, i: number) => {
+            categories.filter((category: any) => category.parent == 0).map((category: any, i: number) => {
               let clickUrl = `/products/${category.id}`;
               if (categories.filter((c: any) => c.parent === category.id).length > 0) {
                 clickUrl = `/categories/${category.id}`;
@@ -54,7 +53,7 @@ const Footer = () => {
       </div>
       
       <div className="copyright text-light">
-        © 2022 shopicon All Rights and Wrongs Reserved
+        Copyright © 2022 shopicon All Rights and Wrongs Reserved
       </div>
     </div>
   );

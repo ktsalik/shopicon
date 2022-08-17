@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import ArticleCard from '../article-card/ArticleCard';
 import Pagination from '../pagination/Pagination';
+import { baseUrl } from '../../helpers';
 
 const Blog = () => {
   const [articles, setArticles] = useState<any[]>([]);
@@ -24,7 +25,7 @@ const Blog = () => {
   const getArticles = () => {
     setLoading(true);
 
-    axios.get(`http://localhostt/eshop-server/articles?page=${page}`).then((response) => {
+    axios.get(`${baseUrl}http://localhostt/eshop-server/articles?page=${page}`).then((response) => {
       /**
        * server response should be a JSON object as the example below
         {

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "thumbnail": "earphones-5.jpeg",
+    "title": "White Earphones",
+    "price": 21.50
+  },
+  {
+    "id": 1,
+    "thumbnail": "earphones-6.jpeg",
+    "title": "Black Modern Earphone",
+    "price": 26.00
+  },
+  {
+    "id": 1,
+    "thumbnail": "earphones-7.jpeg",
+    "title": "Black Earphones",
+    "price": 24.00
+  },
+  {
+    "id": 1,
+    "thumbnail": "headphones-9.jpeg",
+    "title": "Gaming Headphones",
+    "price": 32.00
+  },
+  {
+    "id": 1,
+    "thumbnail": "headphones-10.png",
+    "title": "Black Cat Headphones",
+    "price": 28.50
+  }
+]

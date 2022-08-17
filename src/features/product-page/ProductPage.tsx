@@ -1,15 +1,21 @@
 import './ProductPage.scss';
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useAppSelector } from '../../app/hooks';
+import axios from "axios";
 import { baseUrl } from '../../helpers';
+import { store } from '../../app/store';
+import cartSlice from '../cart/cartSlice';
+import notificationSlice from '../notification/notificationSlice';
+import anime from 'animejs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTruckRampBox } from '@fortawesome/free-solid-svg-icons';
 
 const ProductPage = () => {
   const [product, setProduct] = useState<any>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [imageSelected, setImageSelected] = useState<string>('');
   const [visibleTab, setVisibleTab] = useState<string>('description');
+  const [loading, setLoading] = useState<Boolean>(true);
 
   const params = useParams();
 
@@ -30,58 +36,78 @@ const ProductPage = () => {
     if (product) {
       setImageSelected(product.images[0]);
     }
-  }, [product])
-
-  /**
-   * remove this when you setup the server
-   */
-  const demoProducts = useAppSelector((state: any) => state.products.productListItems);
-  useEffect(() => {
-    setProduct(demoProducts.find((p: any) => p.id.toString() === params.id));
-  }, [demoProducts, params.id]);
-  // end of remove this
+  }, [product]);
 
   useEffect(() => {
     getProduct();
-  }, []);
+    window.scrollTo(0, 0);
 
-  useEffect(() => {
-    getProduct();
+    if (params.id) {
+      localStorage.setItem('last-seen-product', params.id);
+    }
   }, [params.id]);
 
   const getProduct = () => {
-    axios.get(`http://localhostt/eshop-server/product/${params.id}`).then((response) => {
-      /*
-        server response should be a JSON object as the example below
-        {
-          id: 1,
-          category: {
-            id: 2,
-            name: 'Microphones',
-            parent: 0,
-          },
-          images: [
-            'image-1.jpeg',
-            'image-2.jpeg',
-          ],
-          title: 'Red Black Microphone',
-          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi. Nunc at ligula sed dolor euismod vestibulum id euismod urna. Fusce et libero vulputate, laoreet dui in, consequat ipsum. Cras urna odio, tincidunt id suscipit eu, tempor non nisi. Mauris interdum nisi quis molestie convallis. Morbi molestie justo sit amet sem porttitor, in ultricies eros tincidunt. Integer laoreet lobortis metus.",
-          price: 20.00,
-          details: [
-            {
-              name: 'Color',
-              value: 'Red',
-            },
-            {
-              name: 'Type',
-              value: 'Cable',
-            },
-          ],
-        },
-      */
+    setLoading(true);
+    axios.get(`${baseUrl}product.json?id=${params.id}`).then((response) => {
       setProduct(response.data);
+      setLoading(false);
+      window.scrollTo(0, 0);
     });
+  };
+
+  const productInfoElRef = useRef<HTMLDivElement>(null);
+
+  const addToCart = async () => {
+    store.dispatch(cartSlice.actions.add(product));
+    store.dispatch(notificationSlice.actions.create({
+      id: Math.random().toString().slice(-5),
+      type: 'info',
+      text: `Product added to your cart`,
+    }));
+
+    const productImageCloneEl: any = productInfoElRef.current?.querySelector('.image img')?.cloneNode();
+    if (productImageCloneEl) {
+      const productInfoElPos = productInfoElRef.current?.querySelector('.image')?.getBoundingClientRect();
+      if (productInfoElPos) {
+        const c = productImageCloneEl;
+        c.style.position = 'fixed';
+        // c.style.backgroundSize = 'cover';
+        c.style.width = '100px';
+        // c.style.height = '100px';
+        c.style.borderRadius = '10px';
+        c.style.opacity = 0;
+        c.style.zIndex = 999;
+        document.body.append(c);
+        c.style.left = (productInfoElPos.left + (productInfoElPos.width / 2)) - (c.offsetWidth / 2) + 'px';
+        c.style.top = (productInfoElPos.top + (productInfoElPos.height / 4)) + 'px';
+        await new Promise((resolve) => {
+          anime({
+            targets: c.style,
+            opacity: 1,
+            easing: 'linear',
+            duration: 500,
+            complete: resolve,
+          });
+        });
+        const cartIconPos = document.querySelector('.Navbar .btn-cart')?.getBoundingClientRect();
+        if (cartIconPos) {
+          anime({
+            targets: c.style,
+            top: cartIconPos.top + 'px',
+            left: cartIconPos.left + 'px',
+            width: '25px',
+            // height: '25px',
+            opacity: 0.1,
+            easing: 'easeInOutCubic',
+            duration: 1000,
+            complete: () => {
+              productImageCloneEl.remove();
+            },
+          });
+        }
+      }
+    }
   };
 
   return (
@@ -103,10 +129,17 @@ const ProductPage = () => {
             </div>
           : ''
       }
+
+      {
+        loading && <div className="w-100 h-100 d-flex flex-direction-column justify-content-center align-items-center" style={{flex: '1', color: '#AAAAAA'}}>
+          <FontAwesomeIcon icon={faTruckRampBox} size="4x" />
+          <span style={{marginTop: '20px'}}>Unpacking the product</span>
+        </div>
+      }
       
       {
-        product
-          ? <div className="product-info">
+        !loading && product
+          ? <div className="product-info" ref={productInfoElRef}>
               <div className="images">
                 <div className="thumbnails">
                   {
@@ -126,8 +159,8 @@ const ProductPage = () => {
                 <span className="price">${parseFloat(product.price.toString()).toFixed(2)}</span>
                 <span className="short-description">{product.short_description}</span>
                 <div className="available">
-                  <span className="text-dark">Available:</span>
-                  <span className="text-primary">{product.available}</span>
+                  <span className="label">Available:</span>
+                  <span className="value">{product.available}</span>
                 </div>
                 <div className="d-flex flex-direction-column mt-2">
                   <input
@@ -136,14 +169,20 @@ const ProductPage = () => {
                     onChange={onQuantityChange}
                     value={quantity}
                     min={1}></input>
-                  <button className="btn-add-to-cart">Add to cart</button>
+                  <button
+                    className="btn-add-to-cart"
+                    onClick={addToCart}
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>
           : ''
       }
+
       {
-        product
+        !loading && product
         ? <div className="product-details">
             <div className="tabs">
               <div
@@ -160,22 +199,28 @@ const ProductPage = () => {
               </div>
             </div>
             <div className="tab-content">
-              <div className={`${visibleTab === 'description' ? '' : 'd-none'}`}>
+              <div className={`description ${visibleTab === 'description' ? '' : 'd-none'}`}>
                 {product.description}
               </div>
-              <div className={`${visibleTab === 'details' ? '' : 'd-none'}`}>
-                {
-                  product.details.map((detail: any, i: number) => {
-                    return (
-                      <div
-                        key={i}
-                        className="mt-1"
-                      >
-                        {detail.name}: {detail.value}
-                      </div>
-                    );
-                  })
-                }
+              <div className={`details ${visibleTab === 'details' ? '' : 'd-none'}`}>
+                <div className="labels">
+                  {
+                    product.details.map((detail: any, i: number) => {
+                      return (
+                        <span key={i}>{detail.name}</span>
+                      );
+                    })
+                  }
+                </div>
+                <div className="values">
+                  {
+                    product.details.map((detail: any, i: number) => {
+                      return (
+                        <span key={i}>{detail.value}</span>
+                      );
+                    })
+                  }
+                </div>
               </div>
             </div>
           </div>

@@ -1,11 +1,10 @@
 import './SearchModal.scss';
 import React, { useEffect, useState } from "react";
-import { faClose, faMagnifyingGlassArrowRight, faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from 'axios';
-import { useAppSelector } from '../../app/hooks';
-import { ProductCategory } from '../../interfaces/ProductsInterfaces';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose, faMagnifyingGlassArrowRight, faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
 import { baseUrl } from '../../helpers';
 
 interface SearchModalProps {
@@ -92,16 +91,9 @@ const SearchModal = (props: SearchModalProps) => {
 
     closeModal();
   };
-
-  /**
-   * remove this when you setup the server
-   */
-  const products = useAppSelector((state) => state.products.productListItems);
-  const categories = useAppSelector((state) => state.products.categories);
-  // end of remove this
   
   const quickSearch = () => {
-    axios.get(`http://localhostt/eshop-server/quick-search`).then((response) => {
+    axios.get(`${baseUrl}http://localhostt/eshop-server/quick-search`).then((response) => {
       /*
         server response should be a JSON array as the example below
         [
@@ -117,32 +109,6 @@ const SearchModal = (props: SearchModalProps) => {
         ]
       */
       setQuickSearchResults(response.data);
-    }).catch((err) => {
-      /**
-       * remove this when you setup the server
-       */
-      const categoryResults = categories
-        .filter((c: ProductCategory) => c.name.toLowerCase().includes(searchQuery.toLowerCase()))
-        .map((c: ProductCategory) => {
-          return {
-            id: c.id,
-            name: c.name,
-          };
-        });
-      const productResults = products
-        .filter((p: any) => p.title.toLowerCase().includes(searchQuery.toLowerCase()))
-        .map((p: any) => {
-          return {
-            id: p.id,
-            image: p.images[0],
-            title: p.title,
-          }
-        });
-      setQuickSearchResults([
-        ...categoryResults,
-        ...productResults,
-      ]);
-      // end of remove this
     });
   };
 
@@ -182,7 +148,7 @@ const SearchModal = (props: SearchModalProps) => {
             quickSearchResults.map((result: any, i: number) => {
               let resultItemEl;
               if ('name' in result) {
-                // is a category result
+                // is a category search result
                 resultItemEl = (
                   <div
                     className={`autocomplete__search-result ${quickSearchResultsSelectedIndex === i + 1 ? 'selected' : ''}`}
@@ -193,7 +159,7 @@ const SearchModal = (props: SearchModalProps) => {
                   </div>
                 );
               } else if ('title' in result) {
-                // is a product result
+                // is a product search result
                 resultItemEl = (
                   <div
                     className={`autocomplete__search-result ${quickSearchResultsSelectedIndex === i + 1 ? 'selected' : ''}`}

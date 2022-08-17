@@ -1,31 +1,20 @@
 @import '../../variables.scss';
 
 .ProductPage {
+  width: 1180px;
+  max-width: 100%;
+  min-height: calc(100vh - 75px - 0px);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 
-  .breadcrumbs {
-    width: 1180px;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 70px 0;
-
-    a {
-      text-decoration: none;
-      color: $less-dark-text;
-    }
-
-    & > * {
-      margin: 0 3px;
-      color: $less-dark-text;
-    }
-  }
-  
   .product-info {
-    width: 1180px;
-    max-width: 100%;
+    width: calc(100% - 20px - 20px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    margin: 50px auto;
+    margin: 50px 0;
+    padding: 0 20px;
 
     .images {
       flex: 1;
@@ -83,15 +72,16 @@
 
       .title {
         margin-left: 10px;
-        font-size: 24px;
+        font-size: 26px;
         color: $dark-text;
       }
 
       .price {
         margin-left: 10px;
         margin-top: 20px;
-        font-size: 22px;
+        font-size: 30px;
         color: $dark-text;
+        font-family: 'Open Sans Bold';
       }
 
       .available {
@@ -99,16 +89,21 @@
         margin-top: 20px;
         font-size: $normal-font-size;
 
-        & > span:nth-of-type(2) {
+        .label {
+          color: $less-dark-text;
+        }
+
+        .value {
           margin-left: 5px;
+          color: $primary-text;
         }
       }
 
       .short-description {
         margin-left: 10px;
         margin-top: 40px;
-        font-size: 20px;
-        color: $dark-text;
+        font-size: $large-font-size;
+        color: $less-dark-text;
       }
 
       .input-quantity {
@@ -125,7 +120,7 @@
       .btn-add-to-cart {
         outline: none;
         border: none;
-        margin-top: 10px;
+        margin-top: 30px;
         padding: 10px 20px;
         border-radius: 30px;
         background: $button-primary-background;
@@ -138,8 +133,9 @@
 
   .product-details {
     width: 1180px;
-    max-width: 100%;
+    max-width: calc(100% - 20px - 20px);
     margin: 50px auto;
+    padding: 0 20px;
     color: $dark-text;
 
     .tabs {
@@ -172,7 +168,55 @@
       border-top-right-radius: 5px;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      padding: 20px;
+
+      .description {
+        padding: 20px;
+      }
+
+      .details {
+        display: flex;
+
+        .labels, .values {
+          display: flex;
+          flex-direction: column;
+
+          & > span {
+            padding: 10px;
+          }
+
+          & > span:nth-child(even) {
+            background-color: #EEEEEE
+          }
+        }
+
+        .values {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .ProductPage {
+
+    .product-info {      
+      flex-direction: column;
+
+      .images {
+  
+        .thumbnails {
+  
+          img {
+            height: 50px;
+          }
+        }
+      }
+
+      .title {
+        margin: 0;
+        margin-top: 20px;
+      }
     }
   }
 }

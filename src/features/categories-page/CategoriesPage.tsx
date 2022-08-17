@@ -1,9 +1,8 @@
 import './CategoriesPage.scss';
-import CategoryItem from '../category-item/CategoryItem';
-import { useAppSelector } from '../../app/hooks';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ProductCategory } from '../../interfaces/ProductsInterfaces';
+import { useAppSelector } from '../../app/hooks';
+import CategoryItem from '../category-item/CategoryItem';
 
 const CategoryPage = () => {
   const params = useParams();
@@ -17,7 +16,7 @@ const CategoryPage = () => {
     window.scrollTo(0, 0);
   }, [params.id]);
 
-  let browsingCategory: ProductCategory = {
+  let browsingCategory = {
     id: -1,
     name: '',
     images: [],
@@ -25,7 +24,7 @@ const CategoryPage = () => {
     productsCount: 0,
   };
 
-  let parentBrowsingCategory: ProductCategory = {
+  let parentBrowsingCategory = {
     id: -1,
     name: '',
     images: [],
@@ -34,14 +33,13 @@ const CategoryPage = () => {
   };
   
   if (params.id) {
-    // get browsing category
-    const browsingCategoryIndex = categories.findIndex((c: ProductCategory) => c.id.toString() == params.id);
+    const browsingCategoryIndex = categories.findIndex((c: any) => c.id.toString() == params.id);
     if (browsingCategoryIndex > -1) {
       browsingCategory = categories[browsingCategoryIndex];
     }
 
     if (browsingCategory.parent > 0) {
-      const parentBrowsingCategoryIndex = categories.findIndex((c: ProductCategory) => c.id === browsingCategory.parent);
+      const parentBrowsingCategoryIndex = categories.findIndex((c: any) => c.id === browsingCategory.parent);
       if (parentBrowsingCategoryIndex > -1) {
         parentBrowsingCategory = categories[parentBrowsingCategoryIndex];
       }
@@ -67,7 +65,6 @@ const CategoryPage = () => {
       <div className="category-list">
         {
           params.id
-            // render child categories
             ? categories.filter((c: any) => c.parent.toString() === params.id).map((category: any, i: number) => {
                 return (
                   <CategoryItem
@@ -76,7 +73,6 @@ const CategoryPage = () => {
                   ></CategoryItem>
                 );
               })
-            // render root categories
             : categories.filter((c: any) => c.parent === 0).map((category: any, i: number) => {
                 return (
                   <CategoryItem

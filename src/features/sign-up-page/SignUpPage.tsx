@@ -1,15 +1,28 @@
 import './SignUpPage.scss';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordAgain, setPasswordAgain] = useState<string>('');
 
+  const loading = useAppSelector((state: any) => state.account.processing);
+  const loggedIn = useAppSelector((state: any) => state.account.loggedIn);
+  if (loggedIn) {
+    navigate('/account');
+  }
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -23,17 +36,13 @@ const SignUpPage = () => {
   };
   
   const submit = () => {
-    axios.post(`http://localhostt/eshop-server/register`, {
+    axios.post(`signup.json`, {
       email: email,
       password: password,
-    }).then(() => {
-
-    }).catch((err) => {
-      /**
-       * remove this when you setup the server
-       */
-      
-      // end of remove this
+    }).then((response: any) => {
+      if (response.status === 'ok') {
+        
+      }
     });
   };
 
@@ -81,7 +90,7 @@ const SignUpPage = () => {
 
         <div className="terms">
           <input id="input-terms" type="checkbox"></input>
-          <label htmlFor="input-terms">I agree with the <Link to="/terms" target="_blank">terms and conditions</Link> of this website.</label>
+          <label htmlFor="input-terms">I agree with the <Link to="/terms" target="_blank">terms and conditions</Link> of this website</label>
         </div>
 
         <button

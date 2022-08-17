@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { baseUrl } from '../../helpers';
 
 interface ArticlePageComponentProps {
 
@@ -15,7 +16,7 @@ const ArticlePage = (props: ArticlePageComponentProps) => {
   const params = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhostt/article/${params.id}`).then((response) => {
+    axios.get(`${baseUrl}http://localhostt/article/${params.id}`).then((response) => {
       /**
        server response should be a JSON object as the example below
        {

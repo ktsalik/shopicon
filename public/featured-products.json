@@ -1,0 +1,30 @@
+[
+  {
+    "id": 2,
+    "thumbnail": "earphones-4.jpeg",
+    "title": "Black Earphones",
+    "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
+    "price": 20.00
+  },
+  {
+    "id": 3,
+    "thumbnail": "headphones-5.jpeg",
+    "title": "Blue Headphones",
+    "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
+    "price": 27.50
+  },
+  {
+    "id": 4,
+    "thumbnail": "headphones-8.jpeg",
+    "title": "Neon Cat Headphones",
+    "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
+    "price": 25.00
+  },
+  {
+    "id": 5,
+    "thumbnail": "microphone-2.jpeg",
+    "title": "Gold Microphone",
+    "short_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
+    "price": 21.00
+  }
+]

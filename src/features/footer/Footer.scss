@@ -15,8 +15,10 @@
 
       a {
         text-decoration: none;
-        font-size: 20px;
-        font-family: Comfortaa;
+        display: flex;
+        align-items: center;
+        font-family: 'Comfortaa Bold';
+        font-size: 22px;
         color: $light-text;
       }
     }
@@ -76,5 +78,27 @@
     padding: 15px 0;
     text-align: center;
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Footer {
+    padding: 0 30px;
+    
+    .content {
+      flex-direction: column;
+
+      .links {
+        margin-top: 20px;
+      }
+
+      .category-links {
+        margin-top: 20px;
+      }
+
+      .contact-info {
+        margin-top: 20px;
+      }
+    }
   }
 }

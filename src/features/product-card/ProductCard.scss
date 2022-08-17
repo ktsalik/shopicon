@@ -1,10 +1,8 @@
 @import '../../variables.scss';
 
 .ProductCard {
-  width: calc(60% - 1px - 1px);
   display: flex;
   flex-direction: row;
-  margin: 50px auto;
   border: 1px solid #EEEEEE;
   border-radius: 5px;
 
@@ -13,11 +11,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
     border-right: 1px solid #EEEEEE;
 
-    img {
+    a {
       width: 100%;
+
+      .image {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        background-size: cover;
+      }
     }
   }
 
@@ -67,10 +71,8 @@
 }
 
 .ProductCard.grid {
-  width: calc(25% - 1px - 1px - 20px - 20px);
   display: flex;
   flex-direction: column;
-  margin: 20px;
   
   &:hover {
     padding: 1px;
@@ -79,7 +81,8 @@
   }
 
   .thumbnail {
-    width: calc(100% - 10px - 10px);
+    flex: unset;
+    border-right: unset;
   }
 
   .description {
@@ -111,5 +114,41 @@
   .btn-add {
     width: 80%;
     margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ProductCard {
+    flex-direction: column;
+
+    .description {
+      display: none;
+    }
+
+    .details {
+      align-items: center;
+      gap: 0;
+      padding: 0;
+      padding-bottom: 15px;
+
+      a {
+
+        .name {
+          display: flex;
+          min-height: 48px;
+          margin: 0;
+          padding: 0 20px;
+        }
+      }
+
+      .price {
+        margin: 0;
+      }
+    }
+
+    .btn-add {
+      width: 80%;
+      margin-top: 10px;
+    }
   }
 }

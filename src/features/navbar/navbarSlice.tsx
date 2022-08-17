@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit"
 const navbarSlice = createSlice({
   name: 'navbar',
   initialState: {
-    type: 'normal',
+    type: 'fixed',
   },
   reducers: {
-    loadTypePreference: (state, action) => {
+    loadPreferences: (state, action) => {
       if (action.payload.loadFrom === 'localstorage') {
         const type = localStorage.getItem('navbar-type');
 

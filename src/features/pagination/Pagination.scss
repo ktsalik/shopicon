@@ -25,3 +25,15 @@
     }
   }
 }
+
+@media screen and (max-width: 425px) {
+  .Pagination {
+
+    & > button {
+      width: 35px;
+      height: 35px;
+      margin: 0 5px;
+      font-size: $small-font-size;
+    }
+  }
+}

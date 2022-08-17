@@ -1,0 +1,34 @@
+[
+  {
+    "image": "headphones-9.jpeg",
+    "header": "New Arrival",
+    "subheader": "Black Gaming Headphones",
+    "price": 25.00,
+    "buttonText": "Buy now",
+    "buttonUrl": "/product/3"
+  },
+  {
+    "image": "headphones-5.jpeg",
+    "header": "Best Selling",
+    "subheader": "Blue Wireless Headphones",
+    "price": 27.00,
+    "buttonText": "Buy now",
+    "buttonUrl": "/product/2"
+  },
+  {
+    "image": "earphones-4.jpeg",
+    "header": "Offer Discount",
+    "subheader": "Black Wireless Earphones",
+    "price": 24.00,
+    "buttonText": "Buy now",
+    "buttonUrl": "/product/1"
+  },
+  {
+    "image": "headphones-10.png",
+    "header": "New Arrival",
+    "subheader": "Black Cat Headphones",
+    "price": 27.00,
+    "buttonText": "Buy now",
+    "buttonUrl": "/product/3"
+  }
+]

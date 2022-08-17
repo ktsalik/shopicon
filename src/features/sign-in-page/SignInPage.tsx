@@ -1,13 +1,27 @@
 import './SignInPage.scss';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { faCircleNotch, faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons';
+import { store } from '../../app/store';
+import accountSlice from '../account/accountSlice';
+import { useAppSelector } from '../../app/hooks';
 
 const SignInPage = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const loading = useAppSelector((state: any) => state.account.processing);
+  const loggedIn = useAppSelector((state: any) => state.account.loggedIn);
+  if (loggedIn) {
+    navigate('/account');
+  }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -18,18 +32,7 @@ const SignInPage = () => {
   };
 
   const signin = () => {
-    axios.post(`http://localhostt/eshop-server/register`, {
-      email: email,
-      password: password,
-    }).then(() => {
-
-    }).catch((err) => {
-      /**
-       * remove this when you setup the server
-       */
-      
-      // end of remove this
-    });
+    store.dispatch(accountSlice.actions.login({ email, password }));
   };
 
   return (
@@ -69,7 +72,11 @@ const SignInPage = () => {
           className="btn-sign-in btn-primary"
           onClick={signin}
         >
-          Sign In
+          {
+            loading
+              ? <FontAwesomeIcon icon={faCircleNotch} spin />
+              : 'Sign In'
+          }
         </button>
       </div>
     </div>

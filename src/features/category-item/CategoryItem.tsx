@@ -1,8 +1,7 @@
+import './CategoryItem.scss';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { baseUrl } from '../../helpers';
-import { ProductCategory } from '../../interfaces/ProductsInterfaces';
-import './CategoryItem.scss';
 
 interface CategoryItemProps {
   id: string;
@@ -12,7 +11,7 @@ const CategoryItem = (props: CategoryItemProps) => {
 
   const categories = useAppSelector((state) => state.products.categories);
 
-  let category: ProductCategory = {
+  let category = {
     id: -1,
     name: '',
     images: [],
@@ -49,7 +48,7 @@ const CategoryItem = (props: CategoryItemProps) => {
                 <div className="fill"></div>
               </div>
             }
-            {category.images[0] && <img src={`${baseUrl}assets/images/${category.images[0]}`} width="210"></img>}
+            {category.images[0] && <img src={`${baseUrl}assets/images/${category.images[0]}`}></img>}
           </div>
           <div className="small-images">
             <div>
@@ -58,7 +57,7 @@ const CategoryItem = (props: CategoryItemProps) => {
                   <div className="fill"></div>
                 </div>
               }
-              {category.images[1] && <img src={`${baseUrl}assets/images/${category.images[1]}`} width="125"></img>}
+              {category.images[1] && <img src={`${baseUrl}assets/images/${category.images[1]}`}></img>}
             </div>
             <div>
               {
@@ -66,7 +65,7 @@ const CategoryItem = (props: CategoryItemProps) => {
                   <div className="fill"></div>
                 </div>
               }
-              {category.images[2] && <img src={`${baseUrl}assets/images/${category.images[2]}`} width="125"></img>}
+              {category.images[2] && <img src={`${baseUrl}assets/images/${category.images[2]}`}></img>}
             </div>
           </div>
         </div>

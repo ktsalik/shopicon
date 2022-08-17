@@ -7,22 +7,6 @@
   flex-direction: column;
   margin: 0 auto;
   padding-bottom: 50px;
-
-  .breadcrumbs {
-    width: 100%;
-    margin: 0 auto;
-    padding: 70px 0;
-
-    a {
-      text-decoration: none;
-      color: $less-dark-text;
-    }
-
-    & > * {
-      margin: 0 3px;
-      color: $less-dark-text;
-    }
-  }
   
   .article {
     display: flex;
@@ -40,18 +24,44 @@
     .date {
       margin-top: 20px;
       margin-left: 10px;
+      color: $dark-text;
     }
 
     .title {
       margin-top: 10px;
       margin-left: 10px;
       font-size: 24px;
+      color: $dark-text;
     }
 
     .content {
       margin-top: 30px;
       white-space: pre-wrap;
       line-height: 25px;
+      color: $dark-text;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .ArticlePage {
+
+    .article {
+      padding: 10px;
+
+      .image {
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .content {
+
+        img {
+          max-width: 100%;
+        }
+      }
     }
   }
 }

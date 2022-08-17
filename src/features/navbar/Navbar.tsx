@@ -1,26 +1,31 @@
 import './Navbar.scss';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
-  Link,
+  Link, useNavigate,
 } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBasket, faCaretRight, faShop, faHeart, faSearch, faClose, faUser, faCircleDot, faCircle, faShoppingCart, faSignInAlt, faFileCircleCheck, faUserCheck } from '@fortawesome/free-solid-svg-icons';
-import { ProductCategory } from '../../interfaces/ProductsInterfaces';
 import { useAppSelector } from '../../app/hooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretRight, faShop, faHeart, faSearch, faUser, faCircleDot, faCircle, faShoppingCart, faSignInAlt, faUserCheck, faBars, faUserEdit, faUserShield, faMapLocation, faLocationDot, faSearchLocation, faEdit, faBoxesAlt, faHeartCircleCheck, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import SearchModal from '../search-modal/SearchModal';
 import Cart from '../cart/Cart';
+import { store } from '../../app/store';
+import accountSlice from '../account/accountSlice';
 
 interface NavbarComponentProps {
   onTypeChange: any;
 };
 
 const Navbar = (props: NavbarComponentProps) => {
+  const navigate = useNavigate();
+
   const [showSearchModal, setShowSearchModal] = useState<Boolean>(false);
   const [openCart, setOpenCart] = useState<Boolean>(false);
+  const [showMobileMenu, setShowMobileMenu] = useState<Boolean>(false);
 
   const type = useAppSelector((state) => state.navbar.type);
+  const loggedIn = useAppSelector((state) => state.account.loggedIn);
+  const cartProducts = useAppSelector((state) => state.cart.products);
 
-  const cartElRef = React.useRef<HTMLDivElement>(null);
   const navbarElRef = React.useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,6 +44,11 @@ const Navbar = (props: NavbarComponentProps) => {
     }
   };
 
+  const signOut = () => {
+    store.dispatch(accountSlice.actions.logout({}));
+    navigate('/sign-in');
+  };
+
   const openSearchModal = () => {
     setShowSearchModal(true);
   };
@@ -49,6 +59,18 @@ const Navbar = (props: NavbarComponentProps) => {
 
   const closeCart = () => {
     setOpenCart(false);
+  };
+
+  const openMobileMenu = () => {
+    setShowMobileMenu(true);
+  };
+
+  const closeMobileMenu = () => {
+    setShowMobileMenu(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
   };
 
   const categories = useAppSelector((state) => state.products.categories);
@@ -65,17 +87,24 @@ const Navbar = (props: NavbarComponentProps) => {
         </div>
 
         <div
+          className="btn-mobile-menu"
+          onClick={toggleMobileMenu}
+        >
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </div>
+
+        <div
           className="menu"
         >
-          <Link to="/" className="text-dark">Home</Link>
+          <Link to="/">Home</Link>
           
           <div className="dropdown">
-            <Link to="/categories" className="text-dark">Products</Link>
+            <span>Products</span>
             
             <div className="dropdown__menu">
               {
-                categories.filter((category: ProductCategory) => category.parent == 0).map((category: ProductCategory, i: number) => {
-                  const childCategoriesExist = categories.some((c: ProductCategory) => c.parent === category.id);
+                categories.filter((category: any) => category.parent == 0).map((category: any, i: number) => {
+                  const childCategoriesExist = categories.some((c: any) => c.parent === category.id);
                   const clickUrl = childCategoriesExist ? `/categories/${category.id}` : `/products/${category.id}`;
                   
                   return (
@@ -84,7 +113,7 @@ const Navbar = (props: NavbarComponentProps) => {
                       key={i}
                       onClick={closeCategoriesMenu}
                     >
-                      <Link to={clickUrl} className="text-dark">
+                      <Link to={clickUrl}>
                         {category.name}
                         {
                           childCategoriesExist
@@ -97,12 +126,12 @@ const Navbar = (props: NavbarComponentProps) => {
                         childCategoriesExist
                           ? <div className="submenu">
                               {
-                                categories.filter((c: ProductCategory) => c.parent === category.id).map((c: ProductCategory, i: number) => {
-                                  const childCategoriesExist = categories.some((cat: ProductCategory) => cat.parent === c.id);
+                                categories.filter((c: any) => c.parent === category.id).map((c: any, i: number) => {
+                                  const childCategoriesExist = categories.some((cat: any) => cat.parent === c.id);
                                   const clickUrl = childCategoriesExist ? `/categories/${c.id}` : `/products/${c.id}`;
 
                                   return (
-                                    <Link key={i} to={clickUrl} className="text-dark" onClick={closeCategoriesMenu}>{c.name}</Link>
+                                    <Link key={i} to={clickUrl} onClick={closeCategoriesMenu}>{c.name}</Link>
                                   );
                                 })
                               }
@@ -115,8 +144,17 @@ const Navbar = (props: NavbarComponentProps) => {
               }
             </div>
           </div>
-          <Link to="/blog" className="text-dark">Blog</Link>
-          <Link to="/contact" className="text-dark">Contact Us</Link>
+
+          <Link to="/blog">Blog</Link>
+          
+          <Link to="/contact">Contact Us</Link>
+        </div>
+
+        <div className={`mobile-menu ${showMobileMenu ? 'd-flex' : 'd-none'}`}>
+          <Link to="/" onClick={() => closeMobileMenu()}>Home</Link>
+          <Link to="/categories" onClick={() => closeMobileMenu()}>Categories</Link>
+          <Link to="/blog" onClick={() => closeMobileMenu()}>Blog</Link>
+          <Link to="/contact" onClick={() => closeMobileMenu()}>Contact Us</Link>
         </div>
         
         <div className="right-menu">
@@ -129,22 +167,53 @@ const Navbar = (props: NavbarComponentProps) => {
           </div>
 
           <div className="btn-sign-in">
-            <FontAwesomeIcon icon={faUser} size="lg" className="text-dark" />
+            <FontAwesomeIcon icon={faUser} size="lg" className="btn-toggle-menu" />
             
             <div className="account-dropdown-menu">
-              <Link to="/sign-in" className="text-dark">
-                <FontAwesomeIcon icon={faSignInAlt} />
-                <span>Sign In</span>
-              </Link>
-              <Link to="/sign-up" className="text-dark">
-                <FontAwesomeIcon icon={faUserCheck} />
-                <span>Sign Up</span>
-              </Link>
+              {
+                !loggedIn
+                  ? <Fragment>
+                      <Link to="/sign-in">
+                        <FontAwesomeIcon icon={faSignInAlt} />
+                        <span>Sign In</span>
+                      </Link>
+                      <Link to="/sign-up">
+                        <FontAwesomeIcon icon={faUserCheck} />
+                        <span>Sign Up</span>
+                      </Link>
+                    </Fragment>
+                  : <Fragment>
+                      <Link to="/account">
+                        <FontAwesomeIcon icon={faUserEdit} />
+                        <span>Details</span>
+                      </Link>
+                      <Link to="/account">
+                        <FontAwesomeIcon icon={faUserShield} />
+                        <span>Security</span>
+                      </Link>
+                      <Link to="/account">
+                        <FontAwesomeIcon icon={faEdit} />
+                        <span>Addresses</span>
+                      </Link>
+                      <Link to="/account">
+                        <FontAwesomeIcon icon={faBoxesAlt} />
+                        <span>Orders</span>
+                      </Link>
+                      <Link to="/account">
+                        <FontAwesomeIcon icon={faHeartCircleCheck} />
+                        <span>Wishlist</span>
+                      </Link>
+                      <button onClick={signOut}>
+                        <FontAwesomeIcon icon={faSignOutAlt} />
+                        <span>Sign Out</span>
+                      </button>
+                    </Fragment>
+              }
             </div>
           </div>
 
           <div className="btn-cart" onClick={() => setOpenCart(true)}>
-            <span className="products-count-badge">0</span>
+            <span className="products-count-badge">{cartProducts.length}</span>
             <FontAwesomeIcon icon={faShoppingCart} size="lg" className="text-dark" />
           </div>
 

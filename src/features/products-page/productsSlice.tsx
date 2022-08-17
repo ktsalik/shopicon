@@ -3,24 +3,15 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    productListItems: [],
-    productListPageCount: 0,
-    loadingProducts: false,
+    loadingCategories: false,
     categories: [],
   },
   reducers: {
-    getProducts(state, action) {
-      state.loadingProducts = true;
-    },
-    productsLoaded: (state, action) => {
-      state.productListItems = action.payload.products;
-      state.productListPageCount = action.payload.page_count;
-      state.loadingProducts = false;
-    },
     getCategories(state, action) {
-
+      state.loadingCategories = true;
     },
     categoriesLoaded: (state, action) => {
+      state.loadingCategories = false;
       state.categories = action.payload;
     },
   },

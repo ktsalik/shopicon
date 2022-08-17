@@ -4,7 +4,58 @@
   width: 1180px;
   max-width: 100%;
   margin: 0 auto;
-  margin-top: 50px;
+
+  .slide {
+    display: flex;
+    align-items: center;
+
+    .image {
+      flex: 1;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info {
+      flex: 1;
+
+      .header {
+        margin-top: 30px;
+        margin-left: 10px;
+        font-family: 'Comfortaa Bold';
+        font-size: 40px;
+        color: $dark-text;
+      }
+
+      .subheader {
+        margin-top: 5px;
+        margin-left: 10px;
+        font-size: 30px;
+        color: $dark-text;
+      }
+
+      .price {
+        margin-top: 30px;
+        margin-left: 10px;
+        font-family: 'Open Sans Bold';
+        font-size: 36px;
+        color: $less-dark-text;
+      }
+
+      .btn-offer {
+        display: inline-block;
+        text-decoration: none;
+        margin-top: 30px;
+        padding: 10px 20px;
+        border-radius: 30px;
+        background-color: $button-primary-background;
+        font-size: $large-font-size;
+        color: $button-primary-text;
+        cursor: pointer;
+      }
+    }
+  }
 
   section {
     width: 100%;
@@ -14,6 +65,7 @@
     .section-title {
       font-size: 26px;
       text-align: center;
+      color: $dark-text;
     }
   }
 
@@ -24,8 +76,13 @@
 
     .categories__list {
       display: flex;
-      justify-content: space-between;
-      margin: 50px 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .CategoryItem {
+      margin: 20px;
     }
 
     .categories__btn-all {
@@ -45,9 +102,30 @@
     }
   }
 
-  .statistic-products {
+  .featured {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+    .product-list {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .ProductCard {
+        width: calc((1180px / 4) - 20px - 20px - 1px - 1px);
+        margin: 20px;
+      }
+    }
+  }
+
+  .statistic-products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 
     h2 {
       padding-bottom: 5px;
@@ -57,35 +135,76 @@
       color: $primary-text;
     }
 
-    .product-list {
-      width: 275px;
+    .section {
+      width: calc((1180px / 3) - 30px - 30px);
+      display: flex;
+      flex-direction: column;
+      margin: 30px;
 
-      .product-item {
-        text-decoration: none;
+      .product-list {
+        width: 100%;
         display: flex;
-        align-items: center;
+        flex-direction: column;
 
-        .product-item__thumbnail {
-          flex: 1;
-        }
-
-        .product-item__title {
-          flex: 5;
-          min-height: 38px;
+        .product-item {
+          text-decoration: none;
           display: flex;
           align-items: center;
-          padding-left: 10px;
-          font-size: $normal-font-size;
-          color: $less-dark-text;
-        }
 
-        .product-item__price {
-          flex: 2;
-          padding-left: 10px;
-          text-align: right;
-          font-size: $normal-font-size;
-          color: $less-dark-text;
+          .product-item__thumbnail {
+            flex: 1;
+          }
+
+          .product-item__title {
+            flex: 5;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            font-size: $small-font-size;
+            color: $less-dark-text;
+          }
+
+          .product-item__price {
+            flex: 2;
+            padding-left: 10px;
+            text-align: right;
+            font-size: $small-font-size;
+            color: $less-dark-text;
+          }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .HomePage {
+
+    section {
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .slide {
+      flex-direction: column;
+
+      .image {
+
+        img {
+          height: 300px;
+        }
+      }
+
+      .info {
+        padding: 20px;
+      }
+    }
+
+    .categories {
+
+      .categories__list {
+        margin: 0;
       }
     }
   }

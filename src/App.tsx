@@ -11,7 +11,7 @@ import productsSlice from './features/products-page/productsSlice';
 import navbarSlice from './features/navbar/navbarSlice';
 import Navbar from './features/navbar/Navbar';
 import Home from './features/home-page/HomePage';
-import Products from './features/products-page/ProductsPage'
+import ProductsPage from './features/products-page/ProductsPage'
 import ProductPage from './features/product-page/ProductPage';
 import SearchPage from './features/search-page/SearchPage';
 import CategoryPage from './features/categories-page/CategoriesPage';
@@ -23,20 +23,17 @@ import ContactPage from './features/contact-page/ContactPage';
 import SignInPage from './features/sign-in-page/SignInPage';
 import SignUpPage from './features/sign-up-page/SignUpPage';
 import Footer from './features/footer/Footer';
+import AccountPage from './features/account/AccountPage';
+import CartPage from './features/cart-page/CartPage';
+import CheckoutPage from './features/checkout-page/CheckoutPage';
 
 function App() {
   const navbarType = useAppSelector((state) => state.navbar.type);
   const notifications = useAppSelector((state) => state.notification.notifications);
 
   useEffect(() => {
-    store.dispatch(navbarSlice.actions.loadTypePreference({ loadFrom: 'localstorage' }));
+    store.dispatch(navbarSlice.actions.loadPreferences({ loadFrom: 'localstorage' }));
     store.dispatch(productsSlice.actions.getCategories({}));
-
-    /**
-     * remove this when you setup the server
-     */
-    store.dispatch(productsSlice.actions.getProducts({}));
-    // end of remove this
   }, []);
 
   const onNavbarTypeChange = (type: string) => {
@@ -52,7 +49,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/categories" element={<CategoryPage />}></Route>
           <Route path="/categories/:id" element={<CategoryPage />}></Route>
-          <Route path="/products/:categoryId" element={<Products />}></Route>
+          <Route path="/products/:categoryId" element={<ProductsPage />}></Route>
           <Route path="/product/:id" element={<ProductPage />}></Route>
           <Route path="/search/:query" element={<SearchPage />}></Route>
           <Route path="/blog" element={<BlogPage />}></Route>
@@ -61,6 +58,9 @@ function App() {
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>
           <Route path="/sign-up" element={<SignUpPage />}></Route>
+          <Route path="/account" element={<AccountPage />}></Route>
+          <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="/checkout" element={<CheckoutPage />}></Route>
         </Routes>
 
         <Footer></Footer>
@@ -68,7 +68,7 @@ function App() {
         {
           notifications.map((notification: any, i :number) => {
             return (
-              <Notification id={notification.id} type={notification.type} text={notification.text} index={i} />
+              <Notification key={i} id={notification.id} type={notification.type} text={notification.text} index={i} />
             );
           })
         }

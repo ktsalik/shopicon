@@ -1,6 +1,16 @@
 @import './variables.scss';
 
 @font-face {
+  font-family: 'Comfortaa';
+  src: url(./assets/fonts/Comfortaa/static/Comfortaa-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Comfortaa Bold';
+  src: url(./assets//fonts/Comfortaa/static/Comfortaa-SemiBold.ttf);
+}
+
+@font-face {
   font-family: 'Open Sans';
   src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-Regular.ttf);
 }
@@ -10,13 +20,48 @@
   src: url(./assets/fonts/Open_Sans/static/OpenSans/OpenSans-SemiBold.ttf);
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
 .App {
   display: flex;
   flex-direction: column;
+
+  &.navbar-fixed {
+    padding-top: 75px;
+  }
 }
 
-.App.navbar-fixed {
-  padding-top: 75px;
+.breadcrumbs {
+  max-width: calc(100% - 20px - 20px);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px 0;
+  padding: 20px;
+
+  & > * {
+    margin-left: 5px;
+    color: $dark-text;
+  }
+
+  a {
+    text-decoration: none;
+    color: $dark-text;
+  }
 }
 
 body, button, input {
@@ -27,8 +72,38 @@ h1, h2, h3, h4, h5 {
   font-family: 'Open Sans Bold', sans-serif;
 }
 
+.animate__delay-200ms {
+  animation-delay: 200ms;
+}
+
+.animate__delay-400ms {
+  animation-delay: 400ms;
+}
+
+.highlight {
+  animation: highlight 0.5s linear;
+}
+
+@keyframes highlight {
+  from {
+    background-color: #F7B90F;
+  }
+
+  to {
+    background-color: transparent;
+  }
+}
+
 .hidden {
   visibility: hidden !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
 }
 
 .d-none {
@@ -45,6 +120,10 @@ h1, h2, h3, h4, h5 {
 
 .flex-direction-column {
   flex-direction: column !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
 }
 
 .justify-content-between {
@@ -98,6 +177,26 @@ h1, h2, h3, h4, h5 {
 .mx-auto {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.my-1 {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.my-2 {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+.px-1 {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.px-2 {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }
 
 .fs-1 {

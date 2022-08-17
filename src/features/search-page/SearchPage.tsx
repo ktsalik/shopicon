@@ -1,10 +1,10 @@
 import './SearchPage.scss';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ProductCard from '../product-card/ProductCard';
-import { useAppSelector } from '../../app/hooks';
 import axios from 'axios';
+import ProductCard from '../product-card/ProductCard';
 import Pagination from '../pagination/Pagination';
+import { baseUrl } from '../../helpers';
 
 const SearchPage = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -26,16 +26,10 @@ const SearchPage = () => {
     setPage(page);
   };
 
-  /**
-   * remove this when you setup the server
-   */
-  const demoProducts = useAppSelector((state) => state.products.productListItems);
-  // end of remove this
-
   const getProducts = () => {
     setLoading(true);
 
-    axios.get(`http://localhostt/eshop-server/search?q=${params.query}&page=${page}`).then((response) => {
+    axios.get(`${baseUrl}http://localhostt/eshop-server/search?q=${params.query}&page=${page}`).then((response) => {
       /**
        * server response should be a JSON object as the example below
         {
@@ -68,14 +62,6 @@ const SearchPage = () => {
       setProducts(response.data.products);
       setPageCount(response.data.page_count);
       setLoading(false);
-    }).catch((err) => {
-      /**
-       * remove this when you setup the server
-       */
-      setProducts(demoProducts.filter((p: any) => p.title.toLowerCase().includes(params.query?.toLowerCase() || '')));
-      setPageCount(10);
-      setLoading(false);
-      // end of remove this
     });
 
     window.scrollTo(0, 0);

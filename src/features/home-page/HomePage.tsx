@@ -1,167 +1,39 @@
 import './HomePage.scss';
-import { useEffect, useState } from 'react';
-import { baseUrl, shuffle } from '../../helpers';
-import HomeSlider from '../home-slider/HomeSlider';
-import CategoryItem from '../category-item/CategoryItem';
-import axios from 'axios';
-import ProductCard from '../product-card/ProductCard';
-import { useAppSelector } from '../../app/hooks';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../../helpers';
+import axios from 'axios';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
+import CategoryItem from '../category-item/CategoryItem';
+import ProductCard from '../product-card/ProductCard';
 
 const HomePage = () => {
+  const [sliderData, setSliderData] = useState<any[]>([]);
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [newArrivalProducts, setNewArrivalProducts] = useState<any[]>([]);
   const [bestSellerProducts, setBestSellerProducts] = useState<any[]>([]);
   const [saleProducts, setSaleProducts] = useState<any[]>([]);
 
-  /**
-   * remove this when you setup the server
-   */
-  const demoProducts = useAppSelector((state) => state.products.productListItems);
   useEffect(() => {
-    setNewArrivalProducts(shuffle(demoProducts.map((p: any) => {
-      return {
-        id: p.id,
-        thumbnail: p.images[0],
-        title: p.title,
-        price: p.price,
-      };
-    }).slice(0, 5)));
-    setBestSellerProducts(shuffle(demoProducts.map((p: any) => {
-      return {
-        id: p.id,
-        thumbnail: p.images[0],
-        title: p.title,
-        price: p.price,
-      };
-    }).slice(0, 5)));
-    setSaleProducts(shuffle(demoProducts.map((p: any) => {
-      return {
-        id: p.id,
-        thumbnail: p.images[0],
-        title: p.title,
-        price: p.price,
-      };
-    }).slice(0, 5)));
-  }, [demoProducts]);
-  // end of remove this
-
-  useEffect(() => {
-    axios.get(`http://localhostt/eshop-server/featured-products`).then((response) => {
-      /*
-        server response should be a JSON array as the example below
-        [
-          {
-            id: 2,
-            thumbnail: 'headphones-2.jpeg',
-            title: 'Black Headphones',
-            short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-            price: 20.00,
-          },
-          {
-            id: 3,
-            thumbnail: 'headphones-3.jpeg',
-            title: 'Red Headphones',
-            short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-            price: 27.50,
-          },
-        ]
-      */
-      setFeaturedProducts(response.data);
-    }).catch((err) => {
-      /**
-       * remove this when you setup the server
-       */
-      setFeaturedProducts([
-        {
-          id: 2,
-          thumbnail: 'headphones-2.jpeg',
-          title: 'Black Headphones',
-          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-          price: 20.00,
-        },
-        {
-          id: 3,
-          thumbnail: 'headphones-3.jpeg',
-          title: 'Red Headphones',
-          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-          price: 27.50,
-        },
-        {
-          id: 4,
-          thumbnail: 'earphone-1.jpeg',
-          title: 'White Wireless Bluetooth Earphone',
-          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-          price: 25.00,
-        },
-        {
-          id: 5,
-          thumbnail: 'earphone-2.jpeg',
-          title: 'Black Earphone',
-          short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-          price: 21.00,
-        },
-      ]);
-      // end of remove this
+    axios.get(`${baseUrl}slider-data.json`).then((response) => {
+      setSliderData(response.data);
     });
 
-    axios.get(`http://localhostt/eshop-server/statistic-products`).then((response) => {
-      /*
-        server response should be a JSON object as the example below
-        {
-          new_arrivals: [
-            {
-              id: 2,
-              thumbnail: 'headphones-2.jpeg',
-              title: 'Black Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 20.00,
-            },
-            {
-              id: 3,
-              thumbnail: 'headphones-3.jpeg',
-              title: 'Red Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 27.50,
-            },
-          ],
-          best_sellers: [
-            {
-              id: 2,
-              thumbnail: 'headphones-2.jpeg',
-              title: 'Black Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 20.00,
-            },
-            {
-              id: 3,
-              thumbnail: 'headphones-3.jpeg',
-              title: 'Red Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 27.50,
-            },
-          ],
-          sale: [
-            {
-              id: 2,
-              thumbnail: 'headphones-2.jpeg',
-              title: 'Black Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 20.00,
-            },
-            {
-              id: 3,
-              thumbnail: 'headphones-3.jpeg',
-              title: 'Red Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 27.50,
-            },
-          ]
-        }
-      */
-      setNewArrivalProducts(response.data.new_arrivals);
-      setBestSellerProducts(response.data.best_sellers);
-      setSaleProducts(response.data.sale);
+    axios.get(`${baseUrl}featured-products.json`).then((response) => {
+      setFeaturedProducts(response.data);
+    });
+
+    axios.get(`${baseUrl}new-arrival-products.json`).then((response) => {
+      setNewArrivalProducts(response.data);
+    });
+
+    axios.get(`${baseUrl}best-seller-products.json`).then((response) => {
+      setBestSellerProducts(response.data);
+    });
+
+    axios.get(`${baseUrl}sale-products.json`).then((response) => {
+      setSaleProducts(response.data);
     });
 
     setTimeout(() => {
@@ -173,10 +45,44 @@ const HomePage = () => {
     <div
       className="HomePage"
     >
-      <HomeSlider />
+      <Splide 
+        options={{
+          rewind: true,
+          perPage: 1,
+          rewindByDrag: true,
+        }}
+      >
+        {
+          sliderData.map((slideData: any, i: number) => {
+            return (
+              <SplideSlide key={i}>
+                <div
+                  className="slide"
+                  
+                >
+                  <div className="image">
+                    <img src={`${baseUrl}assets/images/${slideData.image}`}></img>
+                  </div>
+                  <div className="info">
+                    <div className="header animate__animated animate__fadeInDown animate__fast">{slideData.header}</div>
+                    <div className="subheader animate__animated animate__fadeInDown animate__fast animate__delay-200ms">{slideData.subheader}</div>
+                    <div className="price animate__animated animate__fadeInDown animate__fast animate__delay-400ms">${parseFloat(slideData.price.toString()).toFixed(2)}</div>
+                    <Link
+                      to={slideData.buttonUrl}
+                      className="btn-offer animate__animated animate__fadeInUp animate__delay-400ms"
+                    >
+                      {slideData.buttonText}
+                    </Link>
+                  </div>
+                </div>
+              </SplideSlide>
+            );
+          })
+        }
+      </Splide>
 
       <section className="categories">
-        <h2 className="section-title text-dark">Popular Categories</h2>
+        <h2 className="section-title">Popular Categories</h2>
 
         <div className="categories__list">
           <CategoryItem id="1"></CategoryItem>
@@ -187,10 +93,10 @@ const HomePage = () => {
         <Link to="/categories" className="categories__btn-all">ALL CATEGORIES</Link>
       </section>
 
-      <section>
-        <h2 className="section-title text-dark">Featured Products</h2>
+      <section className="featured">
+        <h2 className="section-title">Featured Products</h2>
 
-        <div className="d-flex flex-direction-row flex-wrap">
+        <div className="product-list">
           {
             featuredProducts.map((product: any, i: number) => {
               return (
@@ -202,7 +108,7 @@ const HomePage = () => {
       </section>
 
       <section className="statistic-products">
-        <div>
+        <div className="section">
           <h2>New Arrivals</h2>
 
           <div className="product-list">
@@ -220,7 +126,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="section">
           <h2>Best Sellers</h2>
 
           <div className="product-list">
@@ -238,7 +144,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="section">
           <h2>Sale Products</h2>
 
           <div className="product-list">

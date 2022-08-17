@@ -4,24 +4,14 @@
   width: 1180px;
   max-width: 100%;
   margin: 0 auto;
-
-  .breadcrumbs {
-    width: 100%;
-    margin: 0 auto;
-    padding: 70px 0;
-
-    a {
-      text-decoration: none;
-      color: $less-dark-text;
-    }
-
-    & > * {
-      margin: 0 3px;
-      color: $less-dark-text;
-    }
-  }
   
   .article-list {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .Blog {
+
   }
 }

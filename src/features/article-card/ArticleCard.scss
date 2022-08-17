@@ -36,3 +36,10 @@
     }
   }
 }
+
+@media screen and (max-width: 425px) {
+  .ArticleCard {
+    flex-direction: column;
+    align-items: center;
+  }
+}
