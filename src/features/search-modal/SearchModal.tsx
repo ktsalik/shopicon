@@ -5,7 +5,6 @@ import { useAppSelector } from '../../app/hooks';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faMagnifyingGlassArrowRight, faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
-import { baseUrl } from '../../helpers';
 
 interface SearchModalProps {
   open: Boolean;
@@ -93,23 +92,7 @@ const SearchModal = (props: SearchModalProps) => {
   };
   
   const quickSearch = () => {
-    axios.get(`${baseUrl}http://localhostt/eshop-server/quick-search`).then((response) => {
-      /*
-        server response should be a JSON array as the example below
-        [
-          {
-            "id": 1,
-            "name": "Headphones",
-          },
-          {
-            "id": 2,
-            "image": "headphones-front-image.jpeg",
-            "title": "Red Headphones",
-          },
-        ]
-      */
-      setQuickSearchResults(response.data);
-    });
+    
   };
 
   return (
@@ -165,7 +148,7 @@ const SearchModal = (props: SearchModalProps) => {
                     className={`autocomplete__search-result ${quickSearchResultsSelectedIndex === i + 1 ? 'selected' : ''}`}
                     onClick={() => chooseSearchResult(i + 1)}
                   >
-                    <img src={`${baseUrl}assets/images/${result.image}`} height="40"></img>
+                    <img src={`${result.image}`} height="40"></img>
                     <span>{result.title}</span>
                   </div>
                 );

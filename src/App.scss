@@ -80,20 +80,6 @@ h1, h2, h3, h4, h5 {
   animation-delay: 400ms;
 }
 
-.highlight {
-  animation: highlight 0.5s linear;
-}
-
-@keyframes highlight {
-  from {
-    background-color: #F7B90F;
-  }
-
-  to {
-    background-color: transparent;
-  }
-}
-
 .hidden {
   visibility: hidden !important;
 }

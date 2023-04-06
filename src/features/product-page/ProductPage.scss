@@ -11,9 +11,6 @@
   .product-info {
     width: calc(100% - 20px - 20px);
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 50px 0;
     padding: 0 20px;
 
     .images {
@@ -27,20 +24,14 @@
         overflow: auto;
         margin-right: 5px;
 
-        img {
-          height: 100px;
+        .thumbnail {
+          width: 75px;
+          padding-bottom: 75px;
           margin: 5px 10px;
-          border: 1px solid #CCCCCC;
           border-radius: 5px;
+          background-size: cover;
+          background-repeat: none;
           cursor: pointer;
-
-          &:hover {
-            border-color: #888888;
-          }
-
-          &.selected {
-            border-color: #888888;
-          }
         }
 
         &::-webkit-scrollbar {
@@ -63,12 +54,11 @@
     }
 
     .info {
-      flex: 1.5;
+      flex: 0.75;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: flex-start;
-      align-self: center;
+      padding-left: 30px;
 
       .title {
         margin-left: 10px;
@@ -127,6 +117,10 @@
         font-size: $large-font-size;
         color: $button-primary-text;
         cursor: pointer;
+
+        span {
+          margin-left: 10px;
+        }
       }
     }
   }

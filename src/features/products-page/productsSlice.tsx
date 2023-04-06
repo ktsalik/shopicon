@@ -3,16 +3,27 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
-    loadingCategories: false,
     categories: [],
+    sliderProducts: [],
+    featuredProducts: [],
+    statsProducts: {
+      newArrival: [],
+      bestSeller: [],
+      sale: [],
+    },
   },
   reducers: {
     getCategories(state, action) {
-      state.loadingCategories = true;
-    },
-    categoriesLoaded: (state, action) => {
-      state.loadingCategories = false;
       state.categories = action.payload;
+    },
+    getSliderProducts(state, action) {
+      state.sliderProducts = action.payload;
+    },
+    getFeaturedProducts(state, action) {
+      state.featuredProducts = action.payload;
+    },
+    getStatsProducts(state, action) {
+      state.statsProducts = action.payload;
     },
   },
 });

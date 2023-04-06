@@ -10,6 +10,7 @@ import SearchModal from '../search-modal/SearchModal';
 import Cart from '../cart/Cart';
 import { store } from '../../app/store';
 import accountSlice from '../account/accountSlice';
+import { capitalizeDashes } from '../../helpers';
 
 interface NavbarComponentProps {
   onTypeChange: any;
@@ -103,41 +104,16 @@ const Navbar = (props: NavbarComponentProps) => {
             
             <div className="dropdown__menu">
               {
-                categories.filter((category: any) => category.parent == 0).map((category: any, i: number) => {
-                  const childCategoriesExist = categories.some((c: any) => c.parent === category.id);
-                  const clickUrl = childCategoriesExist ? `/categories/${category.id}` : `/products/${category.id}`;
-                  
+                categories.map((category: any, i: number) => {
                   return (
                     <div
                       className="dropdown__item"
                       key={i}
                       onClick={closeCategoriesMenu}
                     >
-                      <Link to={clickUrl}>
-                        {category.name}
-                        {
-                          childCategoriesExist
-                            ? <FontAwesomeIcon icon={faCaretRight}></FontAwesomeIcon>
-                            : ''
-                        }
+                      <Link to={`/products/${category}`}>
+                        {capitalizeDashes(category)}
                       </Link>
-                      
-                      {
-                        childCategoriesExist
-                          ? <div className="submenu">
-                              {
-                                categories.filter((c: any) => c.parent === category.id).map((c: any, i: number) => {
-                                  const childCategoriesExist = categories.some((cat: any) => cat.parent === c.id);
-                                  const clickUrl = childCategoriesExist ? `/categories/${c.id}` : `/products/${c.id}`;
-
-                                  return (
-                                    <Link key={i} to={clickUrl} onClick={closeCategoriesMenu}>{c.name}</Link>
-                                  );
-                                })
-                              }
-                            </div>
-                          : ''
-                      }
                     </div>
                   );
                 })

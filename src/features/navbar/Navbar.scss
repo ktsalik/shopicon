@@ -48,6 +48,8 @@
     .menu {
       display: flex;
       justify-content: space-between;
+      color: $dark-text;
+      cursor: default;
 
       & > a, & > span {
         text-decoration: none;

@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 50px;
 
     .no-products-message {
       font-size: $normal-font-size;
@@ -29,10 +30,11 @@
       }
 
       .thumbnail {
+        @include skeleton();
         flex: 1;
         height: 200px;
         border-radius: 10px;
-        background-color: #EFEFEF;
+        background-color: #CCCCCC;
       }
 
       .info {
@@ -40,26 +42,29 @@
         padding: 20px;
 
         .name {
+          @include skeleton();
           width: 80%;
           height: 30px;
           border-radius: 15px;
-          background-color: #EFEFEF;
+          background-color: #CCCCCC;
         }
 
         .description {
           width: 65%;
+          @include skeleton();
           height: 60px;
           margin-top: 20px;
           border-radius: 15px;
-          background-color: #EFEFEF;
+          background-color: #CCCCCC;
         }
 
         .price {
           width: 100px;
+          @include skeleton();
           height: 25px;
           margin-top: 30px;
           border-radius: 15px;
-          background-color: #EFEFEF;
+          background-color: #CCCCCC;
         }
       }
     }

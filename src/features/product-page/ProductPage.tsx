@@ -1,21 +1,20 @@
 import './ProductPage.scss';
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import { baseUrl } from '../../helpers';
+import { capitalizeDashes } from '../../helpers';
 import { store } from '../../app/store';
 import cartSlice from '../cart/cartSlice';
 import notificationSlice from '../notification/notificationSlice';
 import anime from 'animejs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTruckRampBox } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faTruckRampBox } from '@fortawesome/free-solid-svg-icons';
 
 const ProductPage = () => {
   const [product, setProduct] = useState<any>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const [imageSelected, setImageSelected] = useState<string>('');
   const [visibleTab, setVisibleTab] = useState<string>('description');
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [fetching, setFetching] = useState<Boolean>(true);
 
   const params = useParams();
 
@@ -39,20 +38,18 @@ const ProductPage = () => {
   }, [product]);
 
   useEffect(() => {
-    getProduct();
     window.scrollTo(0, 0);
-
-    if (params.id) {
-      localStorage.setItem('last-seen-product', params.id);
-    }
+    getProduct();
   }, [params.id]);
 
   const getProduct = () => {
-    setLoading(true);
-    axios.get(`${baseUrl}product.json?id=${params.id}`).then((response) => {
-      setProduct(response.data);
-      setLoading(false);
-      window.scrollTo(0, 0);
+    setFetching(true);
+    fetch(`https://dummyjson.com/products/${params.productId}`).then((response) => {
+      response.json().then((data) => {
+        console.log(data)
+        setProduct(data);
+        setFetching(false);
+      });
     });
   };
 
@@ -72,9 +69,7 @@ const ProductPage = () => {
       if (productInfoElPos) {
         const c = productImageCloneEl;
         c.style.position = 'fixed';
-        // c.style.backgroundSize = 'cover';
         c.style.width = '100px';
-        // c.style.height = '100px';
         c.style.borderRadius = '10px';
         c.style.opacity = 0;
         c.style.zIndex = 999;
@@ -97,7 +92,6 @@ const ProductPage = () => {
             top: cartIconPos.top + 'px',
             left: cartIconPos.left + 'px',
             width: '25px',
-            // height: '25px',
             opacity: 0.1,
             easing: 'easeInOutCubic',
             duration: 1000,
@@ -121,8 +115,8 @@ const ProductPage = () => {
               <span>/</span>
               <Link to="/categories">Categories</Link>
               <span>/</span>
-              <Link to={`/products/${product.category.id}`}>
-                {product.category.name}
+              <Link to={`/products/${product.category}`}>
+                {capitalizeDashes(product.category)}
               </Link>
               <span>/</span>
               <span>{product.title}</span>
@@ -131,36 +125,36 @@ const ProductPage = () => {
       }
 
       {
-        loading && <div className="w-100 h-100 d-flex flex-direction-column justify-content-center align-items-center" style={{flex: '1', color: '#AAAAAA'}}>
+        fetching && <div className="w-100 h-100 d-flex flex-direction-column justify-content-center align-items-center" style={{flex: '1', color: '#AAAAAA'}}>
           <FontAwesomeIcon icon={faTruckRampBox} size="4x" />
           <span style={{marginTop: '20px'}}>Unpacking the product</span>
         </div>
       }
       
       {
-        !loading && product
+        !fetching && product
           ? <div className="product-info" ref={productInfoElRef}>
               <div className="images">
                 <div className="thumbnails">
                   {
                     product.images.map((image: string, i: number) => {
                       return (
-                        <img key={i} className={`${imageSelected === image ? 'selected' : ''}`} src={`${baseUrl}assets/images/${image}`} onClick={() => changeImage(image)}></img>
+                        <div key={i} className={`thumbnail ${imageSelected === image ? 'selected' : ''}`} style={{ backgroundImage: `url('${image}')`}} onClick={() => changeImage(image)}></div>
                       );
                     })
                   }
                 </div>
                 <div className="image">
-                  <img src={`${baseUrl}assets/images/${imageSelected}`}></img>
+                  <img src={imageSelected}></img>
                 </div>
               </div>
               <div className="info">
                 <span className="title">{product.title}</span>
-                <span className="price">${parseFloat(product.price.toString()).toFixed(2)}</span>
-                <span className="short-description">{product.short_description}</span>
+                <span className="price">${parseFloat(product.price).toFixed(2)}</span>
+                <span className="short-description">{product.description}</span>
                 <div className="available">
-                  <span className="label">Available:</span>
-                  <span className="value">{product.available}</span>
+                  <span className="label">Stock:</span>
+                  <span className="value">{product.stock}</span>
                 </div>
                 <div className="d-flex flex-direction-column mt-2">
                   <input
@@ -173,7 +167,8 @@ const ProductPage = () => {
                     className="btn-add-to-cart"
                     onClick={addToCart}
                   >
-                    Add to cart
+                    <FontAwesomeIcon icon={faCartShopping} />
+                    <span>Add to cart</span>
                   </button>
                 </div>
               </div>
@@ -182,7 +177,7 @@ const ProductPage = () => {
       }
 
       {
-        !loading && product
+        !fetching && product
         ? <div className="product-details">
             <div className="tabs">
               <div
@@ -204,22 +199,12 @@ const ProductPage = () => {
               </div>
               <div className={`details ${visibleTab === 'details' ? '' : 'd-none'}`}>
                 <div className="labels">
-                  {
-                    product.details.map((detail: any, i: number) => {
-                      return (
-                        <span key={i}>{detail.name}</span>
-                      );
-                    })
-                  }
+                  <span>Brand</span>
+                  <span>Rating</span>
                 </div>
                 <div className="values">
-                  {
-                    product.details.map((detail: any, i: number) => {
-                      return (
-                        <span key={i}>{detail.value}</span>
-                      );
-                    })
-                  }
+                  <span>{product.brand}</span>
+                  <span>{product.rating}</span>
                 </div>
               </div>
             </div>

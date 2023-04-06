@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faClose, faCreditCard, faEraser } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from '../../app/hooks';
-import { baseUrl } from '../../helpers';
 import { store } from '../../app/store';
 import cartSlice from './cartSlice';
 
@@ -58,7 +57,7 @@ const Cart = (props: CartComponentProps) => {
                 className="product-list__item"
                 key={i}
               >
-                <div className="image" style={{backgroundImage: `url('${baseUrl}assets/images/${product.thumbnail}')`}}></div>
+                <div className="image" style={{backgroundImage: `url('${product.thumbnail}')`}}></div>
 
                 <div className="details">
                   <span className="name">{product.title}</span>

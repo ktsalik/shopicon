@@ -1,45 +1,16 @@
 import './HomePage.scss';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { baseUrl } from '../../helpers';
-import axios from 'axios';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import CategoryItem from '../category-item/CategoryItem';
 import ProductCard from '../product-card/ProductCard';
+import { useSelector } from 'react-redux';
 
 const HomePage = () => {
-  const [sliderData, setSliderData] = useState<any[]>([]);
-  const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
-  const [newArrivalProducts, setNewArrivalProducts] = useState<any[]>([]);
-  const [bestSellerProducts, setBestSellerProducts] = useState<any[]>([]);
-  const [saleProducts, setSaleProducts] = useState<any[]>([]);
-
-  useEffect(() => {
-    axios.get(`${baseUrl}slider-data.json`).then((response) => {
-      setSliderData(response.data);
-    });
-
-    axios.get(`${baseUrl}featured-products.json`).then((response) => {
-      setFeaturedProducts(response.data);
-    });
-
-    axios.get(`${baseUrl}new-arrival-products.json`).then((response) => {
-      setNewArrivalProducts(response.data);
-    });
-
-    axios.get(`${baseUrl}best-seller-products.json`).then((response) => {
-      setBestSellerProducts(response.data);
-    });
-
-    axios.get(`${baseUrl}sale-products.json`).then((response) => {
-      setSaleProducts(response.data);
-    });
-
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    });
-  }, []);
+  const sliderProducts = useSelector((state: any) => state.products.sliderProducts);
+  const featuredProducts = useSelector((state: any) => state.products.featuredProducts);
+  const statsProducts = useSelector((state: any) => state.products.statsProducts);
 
   return (
     <div
@@ -53,25 +24,26 @@ const HomePage = () => {
         }}
       >
         {
-          sliderData.map((slideData: any, i: number) => {
+          sliderProducts.map((product: any, i: number) => {
             return (
               <SplideSlide key={i}>
                 <div
                   className="slide"
                   
                 >
-                  <div className="image">
-                    <img src={`${baseUrl}assets/images/${slideData.image}`}></img>
+                  <div className="image-wrapper">
+                    <div className="image" style={{backgroundImage: `url(${product.images[0]})`}}></div>
                   </div>
+
                   <div className="info">
-                    <div className="header animate__animated animate__fadeInDown animate__fast">{slideData.header}</div>
-                    <div className="subheader animate__animated animate__fadeInDown animate__fast animate__delay-200ms">{slideData.subheader}</div>
-                    <div className="price animate__animated animate__fadeInDown animate__fast animate__delay-400ms">${parseFloat(slideData.price.toString()).toFixed(2)}</div>
+                    <div className="header animate__animated animate__fadeInDown animate__fast">New Arrival</div>
+                    <div className="subheader animate__animated animate__fadeInDown animate__fast animate__delay-200ms">{product.title}</div>
+                    <div className="price animate__animated animate__fadeInDown animate__fast animate__delay-400ms">${parseFloat(product.price).toFixed(2)}</div>
                     <Link
-                      to={slideData.buttonUrl}
+                      to={`/product/${product.id}`}
                       className="btn-offer animate__animated animate__fadeInUp animate__delay-400ms"
                     >
-                      {slideData.buttonText}
+                      Buy Now
                     </Link>
                   </div>
                 </div>
@@ -85,9 +57,9 @@ const HomePage = () => {
         <h2 className="section-title">Popular Categories</h2>
 
         <div className="categories__list">
-          <CategoryItem id="1"></CategoryItem>
-          <CategoryItem id="2"></CategoryItem>
-          <CategoryItem id="3"></CategoryItem>
+          <CategoryItem id="smartphones"></CategoryItem>
+          <CategoryItem id="laptops"></CategoryItem>
+          <CategoryItem id="home-decoration"></CategoryItem>
         </div>
 
         <Link to="/categories" className="categories__btn-all">ALL CATEGORIES</Link>
@@ -98,9 +70,13 @@ const HomePage = () => {
 
         <div className="product-list">
           {
-            featuredProducts.map((product: any, i: number) => {
+            featuredProducts.slice(0, 4).map((product: any, i: number) => {
               return (
-                <ProductCard key={i} data={product} type="grid" />
+                <ProductCard
+                  key={i}
+                  data={product}
+                  type="grid"
+                />
               );
             })
           }
@@ -113,12 +89,12 @@ const HomePage = () => {
 
           <div className="product-list">
             {
-              newArrivalProducts.map((product: any, i: number) => {
+              statsProducts.newArrival.map((product: any, i: number) => {
                 return (
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
-                    <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
+                    <div className="product-item__thumbnail" style={{ backgroundImage: `url('${product.thumbnail}')`}}></div>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
+                    <span className="product-item__price">${parseFloat(product.price).toFixed(2)}</span>
                   </Link>
                 );
               })
@@ -131,12 +107,12 @@ const HomePage = () => {
 
           <div className="product-list">
             {
-              bestSellerProducts.map((product: any, i: number) => {
+              statsProducts.bestSeller.map((product: any, i: number) => {
                 return (
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
-                    <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
+                    <div className="product-item__thumbnail" style={{ backgroundImage: `url('${product.thumbnail}')`}}></div>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
+                    <span className="product-item__price">${parseFloat(product.price).toFixed(2)}</span>
                   </Link>
                 );
               })
@@ -149,12 +125,12 @@ const HomePage = () => {
 
           <div className="product-list">
             {
-              saleProducts.map((product: any, i: number) => {
+              statsProducts.sale.map((product: any, i: number) => {
                 return (
                   <Link key={i} to={`/product/${product.id}`} className="product-item">
-                    <img className="product-item__thumbnail" src={`${baseUrl}assets/images/${product.thumbnail}`} height="50"></img>
+                    <div className="product-item__thumbnail" style={{ backgroundImage: `url('${product.thumbnail}')`}}></div>
                     <span className="product-item__title">{product.title}</span>
-                    <span className="product-item__price">${parseFloat(product.price.toString()).toFixed(2)}</span>
+                    <span className="product-item__price">${parseFloat(product.price).toFixed(2)}</span>
                   </Link>
                 );
               })

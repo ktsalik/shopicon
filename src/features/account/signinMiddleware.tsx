@@ -1,9 +1,8 @@
 import axios from "axios";
-import { baseUrl } from "../../helpers";
 
 const signInMiddleware = (store: any) => (next: any) => (action: any) => {
   if (action.type === 'account/login') {
-    axios.post(`${baseUrl}dummy-sign-in`, {
+    axios.post(`dummy-sign-in`, {
       email: action.payload.email,
       password: action.payload.password,
     }).then((response: any) => {

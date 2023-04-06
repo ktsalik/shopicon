@@ -1,6 +1,5 @@
 import './ProductCard.scss';
 import { Link } from 'react-router-dom';
-import { baseUrl } from '../../helpers';
 import { store } from '../../app/store';
 import cartSlice from '../cart/cartSlice';
 import notificationSlice from '../../features/notification/notificationSlice';
@@ -76,7 +75,7 @@ const ProductCard = (props: ProductCardComponentInterface) => {
     >
       <div className="thumbnail">
         <Link to={`/product/${props.data.id}`}>
-          <div className="image" style={{backgroundImage: `url('${baseUrl}assets/images/${props.data.thumbnail}')`}}></div>
+          <div className="image" style={{backgroundImage: `url('${props.data.thumbnail}')`}}></div>
         </Link>
       </div>
 
@@ -84,8 +83,8 @@ const ProductCard = (props: ProductCardComponentInterface) => {
         <Link to={`/product/${props.data.id}`}>
           <span className="name">{props.data.title}</span>
         </Link>
-        <span className="description">{props.data.short_description}</span>
-        <span className="price">${parseFloat(props.data.price.toString()).toFixed(2)}</span>
+        <span className="description">{props.data.description}</span>
+        <span className="price">${parseFloat(props.data.price).toFixed(2)}</span>
         <button
           className="btn-add"
           onClick={addToCart}

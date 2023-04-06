@@ -2,7 +2,6 @@ import './SignUpPage.scss';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
-import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -36,14 +35,7 @@ const SignUpPage = () => {
   };
   
   const submit = () => {
-    axios.post(`signup.json`, {
-      email: email,
-      password: password,
-    }).then((response: any) => {
-      if (response.status === 'ok') {
-        
-      }
-    });
+    
   };
 
   return (

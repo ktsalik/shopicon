@@ -34,6 +34,9 @@ function App() {
   useEffect(() => {
     store.dispatch(navbarSlice.actions.loadPreferences({ loadFrom: 'localstorage' }));
     store.dispatch(productsSlice.actions.getCategories({}));
+    store.dispatch(productsSlice.actions.getSliderProducts({}));
+    store.dispatch(productsSlice.actions.getFeaturedProducts({}));
+    store.dispatch(productsSlice.actions.getStatsProducts({}));
   }, []);
 
   const onNavbarTypeChange = (type: string) => {
@@ -41,16 +44,15 @@ function App() {
   };
 
   return (
-    <BrowserRouter /*basename="/eshop-template"*/>
+    <BrowserRouter basename="/shopicon">
       <div className={`App ${navbarType === 'fixed' ? 'navbar-fixed' : ''}`}>
         <Navbar onTypeChange={onNavbarTypeChange} ></Navbar>
         
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/categories" element={<CategoryPage />}></Route>
-          <Route path="/categories/:id" element={<CategoryPage />}></Route>
           <Route path="/products/:categoryId" element={<ProductsPage />}></Route>
-          <Route path="/product/:id" element={<ProductPage />}></Route>
+          <Route path="/product/:productId" element={<ProductPage />}></Route>
           <Route path="/search/:query" element={<SearchPage />}></Route>
           <Route path="/blog" element={<BlogPage />}></Route>
           <Route path="/article/:id" element={<ArticlePage />}></Route>

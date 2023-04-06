@@ -1,10 +1,8 @@
 import './SearchPage.scss';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
 import ProductCard from '../product-card/ProductCard';
 import Pagination from '../pagination/Pagination';
-import { baseUrl } from '../../helpers';
 
 const SearchPage = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -28,41 +26,6 @@ const SearchPage = () => {
 
   const getProducts = () => {
     setLoading(true);
-
-    axios.get(`${baseUrl}http://localhostt/eshop-server/search?q=${params.query}&page=${page}`).then((response) => {
-      /**
-       * server response should be a JSON object as the example below
-        {
-          products: [
-            {
-              id: 2,
-              thumbnail: 'headphones-2.jpeg',
-              title: 'Black Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 20.00,
-            },
-            {
-              id: 3,
-              thumbnail: 'headphones-3.jpeg',
-              title: 'Red Headphones',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 27.50,
-            },
-            {
-              id: 5,
-              thumbnail: 'earphone-2.jpeg',
-              title: 'Black Earphone',
-              short_description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis volutpat mi.",
-              price: 21.00,
-            },
-          ],
-          page_count: 10,
-        }
-       */
-      setProducts(response.data.products);
-      setPageCount(response.data.page_count);
-      setLoading(false);
-    });
 
     window.scrollTo(0, 0);
   };

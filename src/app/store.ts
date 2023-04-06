@@ -8,6 +8,9 @@ import notificationSlice from '../features/notification/notificationSlice';
 import accountSlice from '../features/account/accountSlice';
 import signInMiddleware from '../features/account/signinMiddleware';
 import cartSlice from '../features/cart/cartSlice';
+import getFeaturedProductsMiddleware from '../features/products-page/getFeaturedProductsMiddleware';
+import getSliderProductsMiddleware from '../features/products-page/getSliderProductsMiddleware';
+import getStatsProductsMiddleware from '../features/products-page/getStatsProductsMiddleware';
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -17,7 +20,15 @@ export const store = configureStore({
     account: accountSlice.reducer,
     cart: cartSlice.reducer,
   }),
-  middleware: [getCategoriesMiddleware, changeNavbarTypeMiddleware, createNotificationMiddleware, signInMiddleware]
+  middleware: [
+    getCategoriesMiddleware,
+    getSliderProductsMiddleware,
+    getFeaturedProductsMiddleware,
+    getStatsProductsMiddleware,
+    changeNavbarTypeMiddleware,
+    createNotificationMiddleware,
+    signInMiddleware,
+  ],
 });
 
 export type AppDispatch = typeof store.dispatch;

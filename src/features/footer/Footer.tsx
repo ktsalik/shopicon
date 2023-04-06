@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
+import { capitalizeDashes } from '../../helpers';
 
 const Footer = () => {
 
@@ -31,14 +32,9 @@ const Footer = () => {
         <div className="category-links">
           <h3 className="text-light">SHOP CATEGORIES</h3>
           {
-            categories.filter((category: any) => category.parent == 0).map((category: any, i: number) => {
-              let clickUrl = `/products/${category.id}`;
-              if (categories.filter((c: any) => c.parent === category.id).length > 0) {
-                clickUrl = `/categories/${category.id}`;
-              }
-              
+            categories.map((category: any, i: number) => {
               return (
-                <Link key={i} to={clickUrl}>{category.name}</Link>
+                <Link key={i} to={`/products/${category}`}>{capitalizeDashes(category)}</Link>
               );
             })
           }

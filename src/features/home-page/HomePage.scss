@@ -9,11 +9,15 @@
     display: flex;
     align-items: center;
 
-    .image {
+    .image-wrapper {
       flex: 1;
-
-      img {
+      padding: 50px;
+       
+      .image {
         width: 100%;
+        padding-bottom: 70%;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
     }
 
@@ -150,9 +154,13 @@
           text-decoration: none;
           display: flex;
           align-items: center;
+          margin: 5px 0;
 
           .product-item__thumbnail {
-            flex: 1;
+            width: 50px;
+            padding-bottom: 50px;
+            background-repeat: no-repeat;
+            background-size: cover;
           }
 
           .product-item__title {
@@ -189,11 +197,8 @@
     .slide {
       flex-direction: column;
 
-      .image {
-
-        img {
-          height: 300px;
-        }
+      .image-wrapper {
+        width: calc(100% - 50px - 50px);
       }
 
       .info {

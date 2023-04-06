@@ -1,14 +1,15 @@
-import axios from "axios";
-import { baseUrl } from "../../helpers";
-
 const categoriesMiddleware = (store: any) => (next: any) => (action: any) => {
   if (action.type === 'products/getCategories') {
-    axios.get(`${baseUrl}categories.json`).then((response) => {
-      store.dispatch({ type: 'products/categoriesLoaded', payload: response.data });
+    fetch('https://dummyjson.com/products/categories').then((response) => {
+      response.json().then((data) => {
+        data = data.slice(0, 6);
+        action.payload = data;
+        next(action);
+      });
     });
+  } else {
+    next(action);
   }
-
-  return next(action);
 };
 
 export default categoriesMiddleware;
