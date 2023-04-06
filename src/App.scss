@@ -258,3 +258,9 @@ h1, h2, h3, h4, h5 {
 .link {
   text-decoration: none;
 }
+
+@media screen and (max-width: 768px) {
+  .breadcrumbs {
+    margin: 20px 0;
+  }
+}

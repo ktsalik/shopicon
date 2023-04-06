@@ -42,7 +42,7 @@ const CategoryItem = (props: CategoryItemProps) => {
                 <div className="fill"></div>
               </div>
             }
-            {images.length > 0 && <img src={images[0]}></img>}
+            {images.length > 0 && <div className="image" style={{ backgroundImage: `url('${images[0]}')`}}></div>}
           </div>
           <div className="small-images">
             <div>
@@ -51,7 +51,7 @@ const CategoryItem = (props: CategoryItemProps) => {
                   <div className="fill"></div>
                 </div>
               }
-              {images.length > 0 && <img src={images[1]}></img>}
+              {images.length > 0 && <div className="image" style={{ backgroundImage: `url('${images[1]}')`}}></div>}
             </div>
             <div>
               {
@@ -59,11 +59,11 @@ const CategoryItem = (props: CategoryItemProps) => {
                   <div className="fill"></div>
                 </div>
               }
-              {images.length > 0 && <img src={images[2]}></img>}
+              {images.length > 0 && <div className="image" style={{ backgroundImage: `url('${images[2]}')`}}></div>}
             </div>
           </div>
         </div>
-        <span className="name text-dark">{categoryLabel || '&nbsp;'}</span>
+        <span className="name text-dark">{categoryLabel || <span dangerouslySetInnerHTML={{ __html: '&nbsp;' }}></span>}</span>
       </Link>
     </div>
   );

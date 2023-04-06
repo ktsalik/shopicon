@@ -7,7 +7,7 @@ import cartSlice from '../cart/cartSlice';
 import notificationSlice from '../notification/notificationSlice';
 import anime from 'animejs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faTruckRampBox } from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const ProductPage = () => {
   const [product, setProduct] = useState<any>(null);
@@ -46,7 +46,6 @@ const ProductPage = () => {
     setFetching(true);
     fetch(`https://dummyjson.com/products/${params.productId}`).then((response) => {
       response.json().then((data) => {
-        console.log(data)
         setProduct(data);
         setFetching(false);
       });
@@ -126,8 +125,8 @@ const ProductPage = () => {
 
       {
         fetching && <div className="w-100 h-100 d-flex flex-direction-column justify-content-center align-items-center" style={{flex: '1', color: '#AAAAAA'}}>
-          <FontAwesomeIcon icon={faTruckRampBox} size="4x" />
-          <span style={{marginTop: '20px'}}>Unpacking the product</span>
+          <FontAwesomeIcon icon={faBoxOpen} size="4x" />
+          <span style={{marginTop: '20px'}}>Unpacking product</span>
         </div>
       }
       
