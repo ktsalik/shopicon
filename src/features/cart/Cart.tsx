@@ -2,7 +2,7 @@ import './Cart.scss';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faClose, faCreditCard, faEraser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faClose, faCreditCard, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useAppSelector } from '../../app/hooks';
 import { store } from '../../app/store';
 import cartSlice from './cartSlice';
@@ -68,7 +68,7 @@ const Cart = (props: CartComponentProps) => {
                   className="btn-remove"
                   onClick={() => store.dispatch(cartSlice.actions.remove({ id: product.id }))}
                 >
-                  <FontAwesomeIcon icon={faEraser} />
+                  <FontAwesomeIcon icon={faTimes} />
                 </div>
               </div>
             );

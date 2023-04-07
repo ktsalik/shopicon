@@ -88,13 +88,6 @@ const Navbar = (props: NavbarComponentProps) => {
         </div>
 
         <div
-          className="btn-mobile-menu"
-          onClick={toggleMobileMenu}
-        >
-          <FontAwesomeIcon icon={faBars} size="2x" />
-        </div>
-
-        <div
           className="menu"
         >
           <Link to="/">Home</Link>
@@ -124,13 +117,6 @@ const Navbar = (props: NavbarComponentProps) => {
           <Link to="/blog">Blog</Link>
           
           <Link to="/contact">Contact Us</Link>
-        </div>
-
-        <div className={`mobile-menu ${showMobileMenu ? 'd-flex' : 'd-none'}`}>
-          <Link to="/" onClick={() => closeMobileMenu()}>Home</Link>
-          <Link to="/categories" onClick={() => closeMobileMenu()}>Categories</Link>
-          <Link to="/blog" onClick={() => closeMobileMenu()}>Blog</Link>
-          <Link to="/contact" onClick={() => closeMobileMenu()}>Contact Us</Link>
         </div>
         
         <div className="right-menu">
@@ -202,6 +188,20 @@ const Navbar = (props: NavbarComponentProps) => {
                     : ''
             }
           </div>
+        </div>
+
+        <div
+          className="btn-mobile-menu"
+          onClick={toggleMobileMenu}
+        >
+          <FontAwesomeIcon icon={faBars} size="2x" />
+        </div>
+
+        <div className={`mobile-menu ${showMobileMenu ? 'd-flex' : 'd-none'}`}>
+          <Link to="/" onClick={() => closeMobileMenu()}>Home</Link>
+          <Link to="/categories" onClick={() => closeMobileMenu()}>Categories</Link>
+          <Link to="/blog" onClick={() => closeMobileMenu()}>Blog</Link>
+          <Link to="/contact" onClick={() => closeMobileMenu()}>Contact Us</Link>
         </div>
       </div>
 

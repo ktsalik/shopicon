@@ -232,6 +232,8 @@
       }
 
       .btn-mobile-menu {
+        position: absolute;
+        right: 0;
         display: block;
         padding-right: 30px;
       }
@@ -259,7 +261,29 @@
       }
 
       .right-menu {
-        display: none;
+        position: relative;
+        transform: none;
+        padding-right: calc(58px + 30px);
+        
+        .btn-search {
+          display: none;
+        }
+
+        .btn-favourites {
+          display: none;
+        }
+
+        .btn-sign-in {
+          display: none;
+        }
+
+        .btn-cart {
+          margin: 0;
+        }
+
+        .btn-change-navbar-type {
+          display: none;
+        }
       }
     }
   }
