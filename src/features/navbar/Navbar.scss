@@ -27,7 +27,6 @@
       align-items: center;
       left: 0;
       font-family: 'Comfortaa Bold';
-      font-size: 22px;
 
       svg {
         color: $primary-color;
@@ -37,6 +36,7 @@
         text-decoration: none;
         display: flex;
         align-items: center;
+        font-size: 22px;
         color: $primary-color;
       }
     }

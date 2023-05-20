@@ -13,6 +13,7 @@
     padding-bottom: 50px;
 
     .CategoryItem {
+      width: calc(33% - 20px - 20px);
       margin: 20px;
     }
   }
@@ -23,6 +24,11 @@
 
     .category-list {
       justify-content: center;
+
+      .CategoryItem {
+        width: calc(100% - 20px - 20px);
+        max-width: calc(100% - 20px - 20px);
+      }
     }
   }
 }

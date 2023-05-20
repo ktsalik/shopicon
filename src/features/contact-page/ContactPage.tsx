@@ -23,13 +23,13 @@ const ContactPage = () => {
       <span className="text-dark fs-3 mt-3 mx-auto">Drop Us a Message</span>
 
       <div className="form">
-        <div className="d-flex flex-direction-row">
+        <div className="d-flex flex-direction-row flex-mobile-direction-column">
           <div className="form__input">
             <span className="form__label text-dark">Name</span>
             <input type="text"></input>
           </div>
           
-          <div className="form__input ms-2">
+          <div className="form__input ms-mobile-0 ms-2">
             <span className="form__label text-dark">Email</span>
             <input type="email"></input>
           </div>

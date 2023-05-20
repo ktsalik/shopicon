@@ -5,6 +5,8 @@ import { useAppSelector } from '../../app/hooks';
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faMagnifyingGlassArrowRight, faSearch, faTag } from "@fortawesome/free-solid-svg-icons";
+import productsSlice from '../products-page/productsSlice';
+import { useSelector } from 'react-redux';
 
 interface SearchModalProps {
   open: Boolean;
@@ -91,8 +93,28 @@ const SearchModal = (props: SearchModalProps) => {
     closeModal();
   };
   
+  const categories = useSelector((state: any) => state.products.categories);
+  const sliderProducts = useSelector((state: any) => state.products.sliderProducts);
+  const featuredProducts = useSelector((state: any) => state.products.featuredProducts);
   const quickSearch = () => {
-    
+    const categoriesFound = categories.filter((c: any) => c.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1);
+    const sliderProductsFound = sliderProducts.filter((p: any) => p.title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1);
+    const featuredProductsFound = featuredProducts.filter((p: any) => p.title.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1);
+
+    let results: any = [];
+    results = [
+      ...results,
+      ...categoriesFound.map((c: any) => {
+        return {
+          id: c,
+          name: c,
+        };
+      }),
+      ...sliderProductsFound,
+      ...featuredProductsFound,
+    ];
+
+    setQuickSearchResults(results);
   };
 
   return (
@@ -134,6 +156,7 @@ const SearchModal = (props: SearchModalProps) => {
                 // is a category search result
                 resultItemEl = (
                   <div
+                    key={i}
                     className={`autocomplete__search-result ${quickSearchResultsSelectedIndex === i + 1 ? 'selected' : ''}`}
                     onClick={() => chooseSearchResult(i + 1)}
                   >
@@ -145,10 +168,11 @@ const SearchModal = (props: SearchModalProps) => {
                 // is a product search result
                 resultItemEl = (
                   <div
+                    key={i}
                     className={`autocomplete__search-result ${quickSearchResultsSelectedIndex === i + 1 ? 'selected' : ''}`}
                     onClick={() => chooseSearchResult(i + 1)}
                   >
-                    <img src={`${result.image}`} height="40"></img>
+                    <img src={`${result.thumbnail}`} height="40"></img>
                     <span>{result.title}</span>
                   </div>
                 );
@@ -159,7 +183,7 @@ const SearchModal = (props: SearchModalProps) => {
         </div>
       </div>
 
-      <span style={{width: '400px', marginTop: '50px', color: '#FFFFFF'}}>Try searching for "Headphones" or "Microphone"</span>
+      <span style={{width: '400px', marginTop: '50px', color: '#FFFFFF'}}>Try searching for "Laptop" or "Phone"</span>
     </div>
   );
 };

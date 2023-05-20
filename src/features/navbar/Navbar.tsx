@@ -81,7 +81,7 @@ const Navbar = (props: NavbarComponentProps) => {
       <div className="content">
         <div className="logo">
           <Link to="/">
-            <FontAwesomeIcon icon={faShop} size="2x" />
+            <FontAwesomeIcon icon={faShop} size="lg" />
             &nbsp;
             <span>Shopicon</span>
           </Link>

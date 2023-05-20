@@ -264,3 +264,13 @@ h1, h2, h3, h4, h5 {
     margin: 20px 0;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .flex-mobile-direction-column {
+    flex-direction: column !important;
+  }
+
+  .ms-mobile-0 {
+    margin-left: 0 !important;
+  }
+}
