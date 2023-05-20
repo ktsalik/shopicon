@@ -5,7 +5,134 @@
   max-width: 100%;
   min-height: calc(100vh - 75px - 339px);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 50px auto;
+
+  .product-list {
+    display: flex;
+    flex-direction: column;
+
+    .product-list__header{
+      display: flex;
+      padding-bottom: 5px;
+
+      .product-label {
+        width: 370px;
+        text-align: center;
+      }
+
+      .quantity-label {
+        width: 80px;
+        text-align: center;
+      }
+
+      .price-label, .total-label {
+        width: 110px;
+        text-align: center;
+      }
+    }
+
+    .product-list__items-container {
+      border: 1px solid #CCCCCC;
+
+      .product-list__item {
+        display: flex;
+        align-items: center;
+
+        &:not(:last-of-type) {
+          border-bottom: 1px solid #CCCCCC;
+        }
+
+        & > * {
+          margin: 5px;
+        }
+
+        .title {
+          text-decoration: none;
+          width: 300px;
+          color: $text-dark;
+        }
+
+        .quantity {
+          width: 70px;
+          text-align: center;
+          font-size: 14px;
+        }
+
+        .price, .total {
+          width: 100px;
+          text-align: center;
+        }
+
+        .total {
+          font-weight: bold;
+        }
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: contain;
+        }
+
+        .btn-remove {
+          padding: 0 10px;
+          cursor: pointer;
+          color: $text-red;
+        }
+      }
+    }
+
+    .product-list__footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 20px;
+      margin-right: 5px;
+      padding-right: 40px;
+
+      .label {
+        font-size: 14px;
+      }
+
+      .total {
+        width: 100px;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .btn-checkout {
+    @include button();
+    width: 200px;
+    max-width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .CartPage {
+
+    .product-list {
+
+      .product-list__header {
+        display: none;
+      }
+
+      .product-list__items-container {
+        padding: 0 50px;
+
+        .product-list__item {
+          flex-direction: column;
+          margin-top: 30px;
+
+          .title {
+            width: unset;
+          }
+        }
+      }
+    }
+  }
 }
