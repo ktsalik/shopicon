@@ -19,11 +19,11 @@ const ProductsPage = () => {
   useEffect(() => {
     fetchProducts();
     window.scrollTo(0, 0);
-  }, [page, params.categoryId]);
+  }, [page, params.categorySlug]);
 
   const fetchProducts = () => {
     setFetching(true);
-    fetch(`https://dummyjson.com/products/category/${params.categoryId}`).then((response) => {
+    fetch(`https://dummyjson.com/products/category/${params.categorySlug}`).then((response) => {
       response.json().then((data) => {
         setProducts(data.products);
         setFetching(false);
@@ -36,7 +36,7 @@ const ProductsPage = () => {
   };
 
   const categories = useAppSelector((state) => state.products.categories);
-  const category = categories.find((c: any) => c === params.categoryId) || '';
+  const category: any = categories.find((c: any) => c.slug === params.categorySlug) || '';
 
   return (
     <div
@@ -48,7 +48,7 @@ const ProductsPage = () => {
         <Link to="/categories">Categories</Link>
         <span>/</span>
         <span>
-          {capitalizeDashes(category)}
+          {capitalizeDashes(category.name)}
         </span>
       </div>
 

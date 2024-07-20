@@ -57,9 +57,9 @@ const HomePage = () => {
         <h2 className="section-title">Popular Categories</h2>
 
         <div className="categories__list">
-          <CategoryItem id="smartphones"></CategoryItem>
-          <CategoryItem id="laptops"></CategoryItem>
-          <CategoryItem id="home-decoration"></CategoryItem>
+          <CategoryItem slug="smartphones"></CategoryItem>
+          <CategoryItem slug="laptops"></CategoryItem>
+          <CategoryItem slug="home-decoration"></CategoryItem>
         </div>
 
         <Link to="/categories" className="categories__btn-all">ALL CATEGORIES</Link>

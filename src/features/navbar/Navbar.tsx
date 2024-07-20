@@ -104,8 +104,8 @@ const Navbar = (props: NavbarComponentProps) => {
                       key={i}
                       onClick={closeCategoriesMenu}
                     >
-                      <Link to={`/products/${category}`}>
-                        {capitalizeDashes(category)}
+                      <Link to={`/products/${category.slug}`}>
+                        {capitalizeDashes(category.name)}
                       </Link>
                     </div>
                   );

@@ -34,7 +34,7 @@ const Footer = () => {
           {
             categories.map((category: any, i: number) => {
               return (
-                <Link key={i} to={`/products/${category}`}>{capitalizeDashes(category)}</Link>
+                <Link key={i} to={`/products/${category.slug}`}>{capitalizeDashes(category.name)}</Link>
               );
             })
           }
@@ -49,7 +49,7 @@ const Footer = () => {
       </div>
       
       <div className="copyright text-light">
-        Copyright © 2022 shopicon All Rights and Wrongs Reserved
+        Copyright © {new Date().getFullYear()} shopicon All Rights and Wrongs Reserved
       </div>
     </div>
   );

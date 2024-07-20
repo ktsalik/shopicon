@@ -25,7 +25,7 @@ const CategoryPage = () => {
             return (
               <CategoryItem
                 key={i}
-                id={category}
+                slug={category.slug}
               ></CategoryItem>
             );
           })

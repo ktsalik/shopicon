@@ -5,7 +5,7 @@ import { capitalizeDashes } from '../../helpers';
 import { useEffect, useState } from 'react';
 
 interface CategoryItemProps {
-  id: string;
+  slug: string;
 };
 
 const CategoryItem = (props: CategoryItemProps) => {
@@ -16,7 +16,7 @@ const CategoryItem = (props: CategoryItemProps) => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`https://dummyjson.com/products/category/${props.id}`).then((response) => {
+    fetch(`https://dummyjson.com/products/category/${props.slug}`).then((response) => {
       response.json().then((data) => {
         const i: any[] = [];
         
@@ -29,12 +29,12 @@ const CategoryItem = (props: CategoryItemProps) => {
     });
   }, []);
 
-  const category = categories.find((c: any) => c === props.id) || '';
+  const category = categories.find((c: any) => c === props.slug) || '';
   const categoryLabel = capitalizeDashes(category);
 
   return (
     <div className="CategoryItem">
-      <Link to={`/products/${category}`}>
+      <Link to={`/products/${props.slug}`}>
         <div className="images">
           <div className="big-image">
             {
